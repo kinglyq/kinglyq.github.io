@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>A New Beginning</title>
+    <url>/2021/02/21/A-new-beginning/</url>
+    <content><![CDATA[<p>A New Beginning</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>获取本机win10的产品密钥</title>
+    <url>/2021/03/21/Get-the-product-key-of-local-win10/</url>
+    <content><![CDATA[<p>如何查看本机 <code>win10</code> 的产品密钥呢？👇</p>
+<span id="more"></span>
+
+<ol>
+<li><p>按 <code>win + q</code> 或 <code>win + r</code>，搜索 <code>regedit</code> 进入注册表。</p>
+</li>
+<li><p>地址栏输入并进入该条目</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入 <code>SoftwareProtectionPlatform</code> 的详情页面后，打开 <code>BackupProductKeyDefault</code>，里面的数值数据就是激活密钥。</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Windows 10</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Getting Started with JavaFX 11+</title>
+    <url>/2021/03/05/Getting-started-with-JavaFX/</url>
+    <content><![CDATA[<p>JavaFX 允许您使用高度可移植的，现代化的，硬件加速的用户界面来创建 Java 应用程序。</p>
+<span id="more"></span>
+
+<h1 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h1><p><code>JavaFX</code> 建立在 <code>JDK</code> 之上，并且是一个独立的组件。有两种不同的选项可用于开发 <code>JavaFX</code> 应用程序：</p>
+<ol>
+<li>使用 <code>JavaFX SDK</code>（在 Java 11 LTS 和 15 进行选择）。</li>
+<li>使用构建系统（例如 Maven / Gradle）从 Maven Central 下载所需的模块（在上述相同版本之间进行选择）。</li>
+</ol>
+<h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><p>至少 Java 11 的版本，<code>Oracle JDK</code> 或 <code>Open JDK</code>，点击下方链接选择下载。</p>
+<ol>
+<li><a href="https://www.oracle.com/cn/java/technologies/javase-downloads.html">Oracle JDK</a></li>
+<li><a href="https://adoptopenjdk.net/">Open JDK</a></li>
+</ol>
+<h2 id="JavaFX"><a href="#JavaFX" class="headerlink" title="JavaFX"></a>JavaFX</h2><p>访问 <a href="https://gluonhq.com/products/javafx/">JavaFX - Gluon</a> 选择合适的版本进行下载，建议 15.0.1，这与 <code>Scene Builder</code> 的版本一致。</p>
+<h2 id="Scene-Builder"><a href="#Scene-Builder" class="headerlink" title="Scene Builder"></a>Scene Builder</h2><blockquote>
+<p>Scene Builder 是面向设计的替代方案，可以提高生产率。</p>
+</blockquote>
+<p>访问 <a href="https://gluonhq.com/products/scene-builder/">Scene Builder - Gluon</a> 选择 15.0.1 版本下载安装。</p>
+<h1 id="在-IDEA-中使用"><a href="#在-IDEA-中使用" class="headerlink" title="在 IDEA 中使用"></a>在 IDEA 中使用</h1><ol>
+<li>新建项目时选择 <code>Java FX</code></li>
+</ol>
+<img src="/2021/03/05/Getting-started-with-JavaFX/new-javafx-project.jpg" class="" title="新建项目时选择JavaFX">
+
+<ol start="2">
+<li>添加 <code>Java FX</code> 依赖：</li>
+</ol>
+<p>选择 <code>File</code> -&gt; <code>Project Structure</code> -&gt; <code>Libraries</code> -&gt; <code>+</code> -&gt; <code>Java</code></p>
+<p>选择好目录后将其添加进项目。</p>
+<img src="/2021/03/05/Getting-started-with-JavaFX/add-javafx-lib.jpg" class="" title="添加依赖">
+
+<ol start="3">
+<li>设置如下 <code>VM options</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">--module-path $&#123;PATH_TO_FX&#125; --add-modules javafx.controls,javafx.fxml</span><br></pre></td></tr></table></figure>
+
+<p><code>PATH_TO_FX</code> 即为 JavaFX lib 的路径，这个变量可以配置在系统中也可以配置在<code>IDEA</code>上，亦或直接写上路径。</p>
+<p>配置如下图所示：</p>
+<ul>
+<li>VM options<br>点击 <code>Modify options</code> 勾选 <code>Add VM options</code></li>
+</ul>
+<img src="/2021/03/05/Getting-started-with-JavaFX/app-vm-opitons.jpg" class="" title="IDEA-JavaFX-VM-options">
+
+<ul>
+<li>在 IDEA 中配置 <code>PATH_TO_FX</code></li>
+</ul>
+<img src="/2021/03/05/Getting-started-with-JavaFX/javafx-path.jpg" class="" title="在IDEA中配置PATH_TO_FX">
+
+<ol start="4">
+<li>运行 <code>main</code> 函数，效果如图</li>
+</ol>
+<img src="/2021/03/05/Getting-started-with-JavaFX/n-run-r.jpg" class="" title="普通javafx项目效果">
+
+<h1 id="在-Maven-中使用"><a href="#在-Maven-中使用" class="headerlink" title="在 Maven 中使用"></a>在 Maven 中使用</h1><ol>
+<li>创建项目</li>
+</ol>
+<p>使用如下的 <code>Maven</code> 命令创建 <code>Java FX</code> 项目：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mvn archetype:generate \</span><br><span class="line">        -DarchetypeGroupId&#x3D;org.openjfx \</span><br><span class="line">        -DarchetypeArtifactId&#x3D;javafx-archetype-simple \</span><br><span class="line">        -DarchetypeVersion&#x3D;0.0.3 \</span><br><span class="line">        -DgroupId&#x3D;包名 \</span><br><span class="line">        -DartifactId&#x3D;项目名 \</span><br><span class="line">        -Dversion&#x3D;1.0.0 \</span><br><span class="line">        -Djavafx-version&#x3D;本地Java版本，如 11、12、。。。</span><br></pre></td></tr></table></figure>
+
+<p>后续也可将 <code>archetype</code> 添加到 <code>IDEA</code> 中</p>
+<img src="/2021/03/05/Getting-started-with-JavaFX/idea-javafx-archetype.jpg" class="" title="javafx-archetype">
+
+<ol start="2">
+<li>项目结构</li>
+</ol>
+<p>注意框起来的部分，一定要与本地安装的 <code>Java</code> 版本保持一致。</p>
+<img src="/2021/03/05/Getting-started-with-JavaFX/m-j-structure.jpg" class="" title="项目结构">
+
+<ol start="3">
+<li>运行结果</li>
+</ol>
+<p>运行 <code>App.java</code> 的 <code>main</code> 函数，效果如图所示：</p>
+<img src="/2021/03/05/Getting-started-with-JavaFX/mvn-javafx-result.jpg" class="" title="效果">
+
+<h1 id="Scene-Builder-的使用"><a href="#Scene-Builder-的使用" class="headerlink" title="Scene Builder 的使用"></a>Scene Builder 的使用</h1><p><code>View</code> -&gt; <code>Show Sample Controller Skeleton</code></p>
+]]></content>
+      <categories>
+        <category>JavaFX</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java JSON library - Jackson 的应用</title>
+    <url>/2021/03/16/Jackson-s-application-memo/</url>
+    <content><![CDATA[<p>从实际使用的角度列出对 <code>Jackson</code> 的一些操作。</p>
+<span id="more"></span>
+
+<p>What is Jackson?</p>
+<blockquote><p>Jackson has been known as “the Java JSON library” or “the best JSON parser for Java”. Or simply as “JSON for Java”.</p>
+<footer><strong>@FasterXML</strong><cite><a href="https://github.com/FasterXML/jackson#what-is-jackson">GitHub - FasterXML/jackson</a></cite></footer></blockquote>
+
+<h1 id="只在序列化或反序列化时忽略"><a href="#只在序列化或反序列化时忽略" class="headerlink" title="只在序列化或反序列化时忽略"></a>只在序列化或反序列化时忽略</h1><p>使用注解 <code>@JsonProperty</code> 的 <code>access</code> 属性。</p>
+<h1 id="定义反序列化时的别名"><a href="#定义反序列化时的别名" class="headerlink" title="定义反序列化时的别名"></a>定义反序列化时的别名</h1><p>使用注解 <code>@JsonAlias</code>。</p>
+<p>注：可定义属性的一个或<strong>多个</strong>替代名称，在反序列化期间可以接受为<strong>正式名称的替代</strong>。 别名信息在 <code>POJO</code> 内省期间也会公开，但在始终使用主名的序列化过程中无效。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Info</span> </span>&#123;</span><br><span class="line">    <span class="meta">@JsonAlias(&#123; &quot;n&quot;, &quot;Name&quot; &#125;)</span></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>JavaFX Runtime images (Java 11+)</title>
+    <url>/2021/03/09/JavaFX-runtime-images/</url>
+    <content><![CDATA[<p>JavaFX 项目的 <code>Runtime images</code> 是一个自定义 JRE，它仅包含应用程序所需的平台模块。</p>
+<p>本文仅针对通过 <code>Maven</code> 构建的项目.</p>
+<span id="more"></span>
+
+<h1 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h1><p>构建的成功与否几乎都取决于 <code>pom.xml</code> 中关于插件的配置，下面会针对这部分进行阐述。</p>
+<p><code>javafx-maven-plugin</code>有两个主要的命令 —— <code>javafx:run</code> 和 <code>javafx:jlink</code></p>
+<ul>
+<li><code>javafx:run</code> 进行编译和运行</li>
+<li><code>javafx:jlink</code> 创建自定义运行时</li>
+</ul>
+<h1 id="javafx-run-options"><a href="#javafx-run-options" class="headerlink" title="javafx:run options"></a>javafx:run options</h1><p>可能是原始的情况：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">release</span>&gt;</span>11 or 12 13 14 15 ......<span class="tag">&lt;/<span class="name">release</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjfx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javafx-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>xxx.xxx.App<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>参考 <a href="https://github.com/openjfx/javafx-maven-plugin#javafxjlink-options">GitHub - openjfx/javafx-maven-plugin: Maven plugin to run JavaFX 11+ applications</a> 来进行配置</p>
+<p>例如：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stripDebug</span>&gt;</span>true<span class="tag">&lt;/<span class="name">stripDebug</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">compress</span>&gt;</span>2<span class="tag">&lt;/<span class="name">compress</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noHeaderFiles</span>&gt;</span>true<span class="tag">&lt;/<span class="name">noHeaderFiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noManPages</span>&gt;</span>true<span class="tag">&lt;/<span class="name">noManPages</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">launcher</span>&gt;</span>launcher<span class="tag">&lt;/<span class="name">launcher</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jlinkImageName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">jlinkImageName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jlinkZipName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">jlinkZipName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>xxx.xxx.App<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="运行-javafx-run-的失败情况和解决办法"><a href="#运行-javafx-run-的失败情况和解决办法" class="headerlink" title="运行 javafx:run 的失败情况和解决办法"></a>运行 <code>javafx:run</code> 的失败情况和解决办法</h1><ul>
+<li><p><code>Failed to execute goal org.openjfx:javafx-maven-plugin:0.0.3:run (default-cli) on project hellofx: Error</code></p>
+<p><code>JAVA_HOME</code> 与项目需要的版本不一致，为了避免这种情况，可以将正确的版本添加到 <code>javafx-maven-plugin</code>:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjfx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javafx-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">executable</span>&gt;</span>xxx\jdk-xxx\bin\java<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>JavaFX</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>MyBatis 支持的 JDBC 类型</title>
+    <url>/2021/03/16/MyBatis-jdbcType/</url>
+    <content><![CDATA[<p>只需要在可能执行插入、更新和删除的且允许空值的列上指定 <code>JDBC</code> 类型，这是 <code>JDBC</code> 的要求而非 <code>MyBatis</code> 的要求。如果你直接面向 <code>JDBC</code> 编程，你需要对可以为空值的列指定这个类型。</p>
+<span id="more"></span>
+
+<p><strong><code>JDBC</code> 要求，如果一个列允许使用 <code>null</code> 值，并且会使用值为 <code>null</code> 的参数，就必须要指定 JDBC 类型（<code>jdbcType</code>）。</strong></p>
+<p>但大多时候，你只须简单指定属性名，顶多要为可能为空的列指定 <code>jdbcType</code>。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>BIT</code></td>
+<td><code>FLOAT</code></td>
+<td><code>CHAR</code></td>
+<td><code>TIMESTAMP</code></td>
+<td><code>OTHER</code></td>
+<td><code>UNDEFINED</code></td>
+</tr>
+<tr>
+<td><code>TINYINT</code></td>
+<td><code>REAL</code></td>
+<td><code>VARCHAR</code></td>
+<td><code>BINARY</code></td>
+<td><code>BLOB</code></td>
+<td><code>NVARCHAR</code></td>
+</tr>
+<tr>
+<td><code>SMALLINT</code></td>
+<td><code>DOUBLE</code></td>
+<td><code>LONGVARCHAR</code></td>
+<td><code>VARBINARY</code></td>
+<td><code>CLOB</code></td>
+<td><code>NCHAR</code></td>
+</tr>
+<tr>
+<td><code>INTEGER</code></td>
+<td><code>NUMERIC</code></td>
+<td><code>DATE</code></td>
+<td><code>LONGVARBINARY</code></td>
+<td><code>BOOLEAN</code></td>
+<td><code>NCLOB</code></td>
+</tr>
+<tr>
+<td><code>BIGINT</code></td>
+<td><code>DECIMAL</code></td>
+<td><code>TIME</code></td>
+<td><code>NULL</code></td>
+<td><code>CURSOR</code></td>
+<td><code>ARRAY</code></td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MyBatis 的参数传递</title>
+    <url>/2021/03/22/MyBatis-parameter-passing/</url>
+    <content><![CDATA[<p><a href="https://github.com/mybatis/mybatis-3/issues/549">Obtain formal parameter names using Java reflection · Issue #549 · mybatis/mybatis-3</a></p>
+]]></content>
+      <tags>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IntelliJ IDEA 的个人配置</title>
+    <url>/2021/03/17/Personal-configuration-of-IntelliJ-IDEA/</url>
+    <content><![CDATA[<blockquote><p>功能强大，符合人体工程学的 JVM IDE</p>
+<footer><strong>JetBrains</strong><cite><a href="https://www.jetbrains.com/zh-cn/idea/">IntelliJ IDEA：JetBrains</a></cite></footer></blockquote>
+
+<span id="more"></span>
+<br />
+
+<p><em>IntelliJ IDEA Version: 2020.3.2</em></p>
+<h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h1 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h1><h1 id="JavaFX"><a href="#JavaFX" class="headerlink" title="JavaFX"></a>JavaFX</h1><h1 id="关闭更新"><a href="#关闭更新" class="headerlink" title="关闭更新"></a>关闭更新</h1><h1 id="自动换行"><a href="#自动换行" class="headerlink" title="自动换行"></a>自动换行</h1><h1 id="文件编码"><a href="#文件编码" class="headerlink" title="文件编码"></a>文件编码</h1><h1 id="关闭自动保存"><a href="#关闭自动保存" class="headerlink" title="关闭自动保存"></a>关闭自动保存</h1><h1 id="代码注释模板"><a href="#代码注释模板" class="headerlink" title="代码注释模板"></a>代码注释模板</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * @author &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;github.com&#x2F;kinglyq&quot; target&#x3D;&quot;_blank&quot;&gt;kinglyq&lt;a&#x2F;&gt;</span><br><span class="line"> *&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用-Prettier"><a href="#使用-Prettier" class="headerlink" title="使用 Prettier"></a>使用 Prettier</h1><h1 id="关闭双击-shift-搜索"><a href="#关闭双击-shift-搜索" class="headerlink" title="关闭双击 shift 搜索"></a>关闭双击 shift 搜索</h1><p>按 <code>Crrl+Shift+A</code>，输入 <code>Registry</code>,找到 <code>ide.suppress.double.click.handler</code> 后把 ✔ 打上即可</p>
+<h1 id="关闭提示区分大小写"><a href="#关闭提示区分大小写" class="headerlink" title="关闭提示区分大小写"></a>关闭提示区分大小写</h1><p><code>Editor</code> -&gt; <code>General</code> -&gt; <code>Code Completion</code></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>使用 Hexo 写作</title>
+    <url>/2021/02/21/Writing-with-Hexo/</url>
+    <content><![CDATA[<p>标签插件和 Front-matter 中的标签不同，它们是用于在文章中快速插入特定内容的插件。</p>
+<p>虽然你可以使用任何格式书写你的文章，但是标签插件永远可用，且语法也都是一致的。</p>
+<span id="more"></span>
+
+<h1 id="Hexo-标签"><a href="#Hexo-标签" class="headerlink" title="Hexo 标签"></a>Hexo 标签</h1><blockquote><p>因为使用 Markdown ，所以只列举一些特别的标签。</p>
+<footer><strong>Hexo</strong><cite><a href="https://hexo.io/zh-cn/docs/tag-plugins">hexo.io/zh-cn/docs/tag-plugins</a></cite></footer></blockquote>
+
+<h2 id="引用块"><a href="#引用块" class="headerlink" title="引用块"></a>引用块</h2><p>在文章中插入引言，可包含作者、来源和标题</p>
+<p>别号： quote</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% blockquote [author[, source]] [link] [source_link_title] %&#125;</span><br><span class="line">content</span><br><span class="line">&#123;% endblockquote %&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h2><p>在文章中插入 iframe。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% iframe url [width] [height] %&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="文章摘要和截断"><a href="#文章摘要和截断" class="headerlink" title="文章摘要和截断"></a>文章摘要和截断</h2><p>在文章中使用 <code>&lt;!-- more --&gt;</code>，那么 <code>&lt;!-- more --&gt;</code> 之前的文字将会被视为摘要。首页中将只出现这部分文字，同时这部分文字也会出现在正文之中。</p>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>在文章中插入代码。</p>
+<p>别名： code</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% codeblock [title] [lang:language] [url] [link text] [additional options] %&#125;</span><br><span class="line">code snippet</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>普通的代码块</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% codeblock %&#125;</span><br><span class="line">alert(&#39;Hello World!&#39;);</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alert(&#39;Hello World!&#39;);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>指定语言</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% codeblock lang:objc %&#125;</span><br><span class="line">[rectangle setX: 10 y: 10 width: 20 height: 20];</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">[rectangle setX: <span class="number">10</span> y: <span class="number">10</span> width: <span class="number">20</span> height: <span class="number">20</span>];</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>附加说明和网址</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% codeblock lang:js Array.map https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;docs&#x2F;Web&#x2F;JavaScript&#x2F;Reference&#x2F;Global_Objects&#x2F;Array&#x2F;map Array.prototype.map() - JavaScript | MDN %&#125;</span><br><span class="line">const array1 &#x3D; [1, 4, 9, 16];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; pass a function to map</span><br><span class="line">const map1 &#x3D; array1.map(x &#x3D;&gt; x * 2);</span><br><span class="line"></span><br><span class="line">console.log(map1);</span><br><span class="line">&#x2F;&#x2F; expected output: Array [2, 8, 18, 32]</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><figcaption><span>Array.map</span><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">Array.prototype.map() - JavaScript | MDN</a></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// pass a function to map</span></span><br><span class="line"><span class="keyword">const</span> map1 = array1.map(<span class="function"><span class="params">x</span> =&gt;</span> x \* <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(map1);</span><br><span class="line"><span class="comment">// expected output: Array [2, 8, 18, 32]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="反引号代码块"><a href="#反引号代码块" class="headerlink" title="反引号代码块"></a>反引号代码块</h2><p>另一种形式的代码块，不同的是它使用三个反引号来包裹。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#96;&#96;&#96; [language] [title] [url] [link text] code snippet &#96;&#96;&#96;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p>在文章中插入链接，并自动给外部链接添加 <code>target=&quot;_blank&quot;</code> 属性。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% link text url [external] [title] %&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="资源的引用"><a href="#资源的引用" class="headerlink" title="资源的引用"></a>资源的引用</h1><blockquote>
+<p>资源（Asset）代表 <code>source</code> 文件夹中除了文章以外的所有文件，例如图片、CSS、JS 文件等。比方说，如果你的 Hexo 项目中只有少量图片，那最简单的方法就是将它们放在 <code>source/images</code> 文件夹中。然后通过类似于 <code>![](/images/image.jpg)</code> 的方法访问它们。</p>
+</blockquote>
+<p>将 <code>config.yml</code> 文件中的 <code>post_asset_folder</code> 选项设为 <code>true</code> 来打开，这样 Hexo 将会在你每一次通过<code> hexo new [layout] &lt;title&gt;</code> 命令创建新文章时自动创建一个与文章同名的文件夹，当然也可以手动创建。</p>
+<figure class="highlight yml"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>通过常规的 <code>markdown</code> 语法和相对路径来引用图片和其它资源可能会导致它们在存档页或者主页上显示不正确。使用以下 <code>Hexo</code> 标签来加载资源：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% asset_path slug %&#125;</span><br><span class="line">&#123;% asset_img slug [title] %&#125;</span><br><span class="line">&#123;% asset_link slug [title] %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例如：<code>&#123;% asset_img Pikachu.jpg Pikachu %&#125;</code></p>
+<img src="/2021/02/21/Writing-with-Hexo/Pikachu.jpg" class="" title="Pikachu">
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+</search>
