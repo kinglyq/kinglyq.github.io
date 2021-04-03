@@ -109,23 +109,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Java JSON library - Jackson 的应用</title>
-    <url>/2021/03/16/Jackson-s-application-memo/</url>
-    <content><![CDATA[<p>从实际使用的角度列出对 <code>Jackson</code> 的一些操作。</p>
-<span id="more"></span>
-
-<p>What is Jackson?</p>
-<blockquote><p>Jackson has been known as “the Java JSON library” or “the best JSON parser for Java”. Or simply as “JSON for Java”.</p>
-<footer><strong>@FasterXML</strong><cite><a href="https://github.com/FasterXML/jackson#what-is-jackson">GitHub - FasterXML/jackson</a></cite></footer></blockquote>
-
-<h1 id="只在序列化或反序列化时忽略"><a href="#只在序列化或反序列化时忽略" class="headerlink" title="只在序列化或反序列化时忽略"></a>只在序列化或反序列化时忽略</h1><p>使用注解 <code>@JsonProperty</code> 的 <code>access</code> 属性。</p>
-<h1 id="定义反序列化时的别名"><a href="#定义反序列化时的别名" class="headerlink" title="定义反序列化时的别名"></a>定义反序列化时的别名</h1><p>使用注解 <code>@JsonAlias</code>。</p>
-<p>注：可定义属性的一个或<strong>多个</strong>替代名称，在反序列化期间可以接受为<strong>正式名称的替代</strong>。 别名信息在 <code>POJO</code> 内省期间也会公开，但在始终使用主名的序列化过程中无效。</p>
-<p>代码示例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Info</span> </span>&#123;</span><br><span class="line">    <span class="meta">@JsonAlias(&#123; &quot;n&quot;, &quot;Name&quot; &#125;)</span></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-  </entry>
-  <entry>
     <title>JavaFX Runtime images (Java 11+)</title>
     <url>/2021/03/09/JavaFX-runtime-images/</url>
     <content><![CDATA[<p>JavaFX 项目的 <code>Runtime images</code> 是一个自定义 JRE，它仅包含应用程序所需的平台模块。</p>
@@ -231,6 +214,23 @@
       </tags>
   </entry>
   <entry>
+    <title>Java JSON library - Jackson 的应用</title>
+    <url>/2021/03/16/Jackson-s-application-memo/</url>
+    <content><![CDATA[<p>从实际使用的角度列出对 <code>Jackson</code> 的一些操作。</p>
+<span id="more"></span>
+
+<p>What is Jackson?</p>
+<blockquote><p>Jackson has been known as “the Java JSON library” or “the best JSON parser for Java”. Or simply as “JSON for Java”.</p>
+<footer><strong>@FasterXML</strong><cite><a href="https://github.com/FasterXML/jackson#what-is-jackson">GitHub - FasterXML/jackson</a></cite></footer></blockquote>
+
+<h1 id="只在序列化或反序列化时忽略"><a href="#只在序列化或反序列化时忽略" class="headerlink" title="只在序列化或反序列化时忽略"></a>只在序列化或反序列化时忽略</h1><p>使用注解 <code>@JsonProperty</code> 的 <code>access</code> 属性。</p>
+<h1 id="定义反序列化时的别名"><a href="#定义反序列化时的别名" class="headerlink" title="定义反序列化时的别名"></a>定义反序列化时的别名</h1><p>使用注解 <code>@JsonAlias</code>。</p>
+<p>注：可定义属性的一个或<strong>多个</strong>替代名称，在反序列化期间可以接受为<strong>正式名称的替代</strong>。 别名信息在 <code>POJO</code> 内省期间也会公开，但在始终使用主名的序列化过程中无效。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Info</span> </span>&#123;</span><br><span class="line">    <span class="meta">@JsonAlias(&#123; &quot;n&quot;, &quot;Name&quot; &#125;)</span></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
     <title>Hexo 文章重命名后的路径访问问题</title>
     <url>/2021/03/25/Path-access-problem-after-Hexo-post-is-renamed/</url>
     <content><![CDATA[<p>修改了文章文件名的大小写后，发现其部署到 <code>GitHub</code> 后并没有变化。。。</p>
@@ -278,6 +278,29 @@
 <span id="more"></span>
 
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;start&quot;: &quot;set BROWSER=firefox&amp;&amp; react-scripts start&quot;</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>使用 craco</title>
+    <url>/2021/04/03/Use-craco/</url>
+    <content><![CDATA[<blockquote><p>Create React App Configuration Override is an easy and comprehensible configuration layer for create-react-app.</p>
+<p>Get all the benefits of <code>create-react-app</code> and customization without using <code>eject</code> by adding a single <code>craco.config.js</code> file at the root of your application and customize your eslint, babel, postcss configurations and many more.</p>
+<p>All you have to do is create your app using <a href="https://create-react-app.dev/">create-react-app</a> and customize the configuration with a craco.config.js file.</p>
+<footer><strong>gsoft-inc</strong><cite><a href="https://github.com/gsoft-inc/craco#craco">CRACO</a></cite></footer></blockquote>
+
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yarn add -D @craco/craco</span><br></pre></td></tr></table></figure>
+
+<p>创建配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">my-app</span><br><span class="line">├── node_modules</span><br><span class="line">├── craco.config.js</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
+
+<p>更新脚本命令</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">/* package.json */</span><br><span class="line"></span><br><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line"><span class="deletion">-   &quot;start&quot;: &quot;react-scripts start&quot;,</span></span><br><span class="line"><span class="addition">+   &quot;start&quot;: &quot;craco start&quot;,</span></span><br><span class="line"><span class="deletion">-   &quot;build&quot;: &quot;react-scripts build&quot;,</span></span><br><span class="line"><span class="addition">+   &quot;build&quot;: &quot;craco build&quot;</span></span><br><span class="line"><span class="deletion">-   &quot;test&quot;: &quot;react-scripts test&quot;,</span></span><br><span class="line"><span class="addition">+   &quot;test&quot;: &quot;craco test&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> CracoLessPlugin = <span class="built_in">require</span>(<span class="string">&quot;craco-less&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> AntdDayjsWebpackPlugin = <span class="built_in">require</span>(<span class="string">&quot;antd-dayjs-webpack-plugin&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> SimpleProgressWebpackPlugin = <span class="built_in">require</span>(<span class="string">&quot;simple-progress-webpack-plugin&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    &#123;</span><br><span class="line">      plugin: CracoLessPlugin,</span><br><span class="line">      options: &#123;</span><br><span class="line">        lessLoaderOptions: &#123; <span class="attr">lessOptions</span>: &#123; <span class="attr">javascriptEnabled</span>: <span class="literal">true</span> &#125; &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  webpack: &#123;</span><br><span class="line">    plugins: [<span class="keyword">new</span> AntdDayjsWebpackPlugin(), <span class="keyword">new</span> SimpleProgressWebpackPlugin()],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">  &quot;antd-dayjs-webpack-plugin&quot;: &quot;^1.0.6&quot;,</span><br><span class="line">  &quot;craco-less&quot;: &quot;^1.17.1&quot;,</span><br><span class="line">  &quot;simple-progress-webpack-plugin&quot;: &quot;^1.1.2&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
