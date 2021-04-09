@@ -109,35 +109,30 @@
       </categories>
   </entry>
   <entry>
-    <title>JavaFX Runtime images (Java 11+)</title>
-    <url>/2021/03/09/JavaFX-runtime-images/</url>
-    <content><![CDATA[<p>JavaFX 项目的 <code>Runtime images</code> 是一个自定义 JRE，它仅包含应用程序所需的平台模块。</p>
-<p>本文仅针对通过 <code>Maven</code> 构建的项目.</p>
+    <title>Java JSON library - Jackson 的应用</title>
+    <url>/2021/03/16/Jackson-s-application-memo/</url>
+    <content><![CDATA[<p>从实际使用的角度列出对 <code>Jackson</code> 的一些操作。</p>
 <span id="more"></span>
 
-<h1 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h1><p>构建的成功与否几乎都取决于 <code>pom.xml</code> 中关于插件的配置，下面会针对这部分进行阐述。</p>
-<p><code>javafx-maven-plugin</code>有两个主要的命令 —— <code>javafx:run</code> 和 <code>javafx:jlink</code></p>
-<ul>
-<li><code>javafx:run</code> 进行编译和运行</li>
-<li><code>javafx:jlink</code> 创建自定义运行时</li>
-</ul>
-<h1 id="javafx-run-options"><a href="#javafx-run-options" class="headerlink" title="javafx:run options"></a>javafx:run options</h1><p>可能是原始的情况：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">release</span>&gt;</span>11 or 12 13 14 15 ......<span class="tag">&lt;/<span class="name">release</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjfx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javafx-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>xxx.xxx.App<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>What is Jackson?</p>
+<blockquote><p>Jackson has been known as “the Java JSON library” or “the best JSON parser for Java”. Or simply as “JSON for Java”.</p>
+<footer><strong>@FasterXML</strong><cite><a href="https://github.com/FasterXML/jackson#what-is-jackson">GitHub - FasterXML/jackson</a></cite></footer></blockquote>
 
-<p>参考 <a href="https://github.com/openjfx/javafx-maven-plugin#javafxjlink-options">GitHub - openjfx/javafx-maven-plugin: Maven plugin to run JavaFX 11+ applications</a> 来进行配置</p>
-<p>例如：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stripDebug</span>&gt;</span>true<span class="tag">&lt;/<span class="name">stripDebug</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">compress</span>&gt;</span>2<span class="tag">&lt;/<span class="name">compress</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noHeaderFiles</span>&gt;</span>true<span class="tag">&lt;/<span class="name">noHeaderFiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noManPages</span>&gt;</span>true<span class="tag">&lt;/<span class="name">noManPages</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">launcher</span>&gt;</span>launcher<span class="tag">&lt;/<span class="name">launcher</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jlinkImageName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">jlinkImageName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jlinkZipName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">jlinkZipName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>xxx.xxx.App<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="运行-javafx-run-的失败情况和解决办法"><a href="#运行-javafx-run-的失败情况和解决办法" class="headerlink" title="运行 javafx:run 的失败情况和解决办法"></a>运行 <code>javafx:run</code> 的失败情况和解决办法</h1><ul>
-<li><p><code>Failed to execute goal org.openjfx:javafx-maven-plugin:0.0.3:run (default-cli) on project hellofx: Error</code></p>
-<p><code>JAVA_HOME</code> 与项目需要的版本不一致，为了避免这种情况，可以将正确的版本添加到 <code>javafx-maven-plugin</code>:</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjfx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javafx-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">executable</span>&gt;</span>xxx\jdk-xxx\bin\java<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<h1 id="只在序列化或反序列化时忽略"><a href="#只在序列化或反序列化时忽略" class="headerlink" title="只在序列化或反序列化时忽略"></a>只在序列化或反序列化时忽略</h1><p>使用注解 <code>@JsonProperty</code> 的 <code>access</code> 属性。</p>
+<h1 id="定义反序列化时的别名"><a href="#定义反序列化时的别名" class="headerlink" title="定义反序列化时的别名"></a>定义反序列化时的别名</h1><p>使用注解 <code>@JsonAlias</code>。</p>
+<p>注：可定义属性的一个或<strong>多个</strong>替代名称，在反序列化期间可以接受为<strong>正式名称的替代</strong>。 别名信息在 <code>POJO</code> 内省期间也会公开，但在始终使用主名的序列化过程中无效。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Info</span> </span>&#123;</span><br><span class="line">    <span class="meta">@JsonAlias(&#123; &quot;n&quot;, &quot;Name&quot; &#125;)</span></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
-      <categories>
-        <category>JavaFX</category>
-      </categories>
+  </entry>
+  <entry>
+    <title>MyBatis 的参数传递</title>
+    <url>/2021/03/22/MyBatis-parameter-passing/</url>
+    <content><![CDATA[<p><a href="https://github.com/mybatis/mybatis-3/issues/549">Obtain formal parameter names using Java reflection · Issue #549 · mybatis/mybatis-3</a></p>
+]]></content>
+      <tags>
+        <tag>MyBatis</tag>
+      </tags>
   </entry>
   <entry>
     <title>MyBatis 支持的 JDBC 类型</title>
@@ -205,30 +200,35 @@
       </tags>
   </entry>
   <entry>
-    <title>Java JSON library - Jackson 的应用</title>
-    <url>/2021/03/16/Jackson-s-application-memo/</url>
-    <content><![CDATA[<p>从实际使用的角度列出对 <code>Jackson</code> 的一些操作。</p>
+    <title>JavaFX Runtime images (Java 11+)</title>
+    <url>/2021/03/09/JavaFX-runtime-images/</url>
+    <content><![CDATA[<p>JavaFX 项目的 <code>Runtime images</code> 是一个自定义 JRE，它仅包含应用程序所需的平台模块。</p>
+<p>本文仅针对通过 <code>Maven</code> 构建的项目.</p>
 <span id="more"></span>
 
-<p>What is Jackson?</p>
-<blockquote><p>Jackson has been known as “the Java JSON library” or “the best JSON parser for Java”. Or simply as “JSON for Java”.</p>
-<footer><strong>@FasterXML</strong><cite><a href="https://github.com/FasterXML/jackson#what-is-jackson">GitHub - FasterXML/jackson</a></cite></footer></blockquote>
+<h1 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h1><p>构建的成功与否几乎都取决于 <code>pom.xml</code> 中关于插件的配置，下面会针对这部分进行阐述。</p>
+<p><code>javafx-maven-plugin</code>有两个主要的命令 —— <code>javafx:run</code> 和 <code>javafx:jlink</code></p>
+<ul>
+<li><code>javafx:run</code> 进行编译和运行</li>
+<li><code>javafx:jlink</code> 创建自定义运行时</li>
+</ul>
+<h1 id="javafx-run-options"><a href="#javafx-run-options" class="headerlink" title="javafx:run options"></a>javafx:run options</h1><p>可能是原始的情况：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">release</span>&gt;</span>11 or 12 13 14 15 ......<span class="tag">&lt;/<span class="name">release</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjfx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javafx-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>xxx.xxx.App<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="只在序列化或反序列化时忽略"><a href="#只在序列化或反序列化时忽略" class="headerlink" title="只在序列化或反序列化时忽略"></a>只在序列化或反序列化时忽略</h1><p>使用注解 <code>@JsonProperty</code> 的 <code>access</code> 属性。</p>
-<h1 id="定义反序列化时的别名"><a href="#定义反序列化时的别名" class="headerlink" title="定义反序列化时的别名"></a>定义反序列化时的别名</h1><p>使用注解 <code>@JsonAlias</code>。</p>
-<p>注：可定义属性的一个或<strong>多个</strong>替代名称，在反序列化期间可以接受为<strong>正式名称的替代</strong>。 别名信息在 <code>POJO</code> 内省期间也会公开，但在始终使用主名的序列化过程中无效。</p>
-<p>代码示例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Info</span> </span>&#123;</span><br><span class="line">    <span class="meta">@JsonAlias(&#123; &quot;n&quot;, &quot;Name&quot; &#125;)</span></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考 <a href="https://github.com/openjfx/javafx-maven-plugin#javafxjlink-options">GitHub - openjfx/javafx-maven-plugin: Maven plugin to run JavaFX 11+ applications</a> 来进行配置</p>
+<p>例如：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stripDebug</span>&gt;</span>true<span class="tag">&lt;/<span class="name">stripDebug</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">compress</span>&gt;</span>2<span class="tag">&lt;/<span class="name">compress</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noHeaderFiles</span>&gt;</span>true<span class="tag">&lt;/<span class="name">noHeaderFiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noManPages</span>&gt;</span>true<span class="tag">&lt;/<span class="name">noManPages</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">launcher</span>&gt;</span>launcher<span class="tag">&lt;/<span class="name">launcher</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jlinkImageName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">jlinkImageName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jlinkZipName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">jlinkZipName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>xxx.xxx.App<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="运行-javafx-run-的失败情况和解决办法"><a href="#运行-javafx-run-的失败情况和解决办法" class="headerlink" title="运行 javafx:run 的失败情况和解决办法"></a>运行 <code>javafx:run</code> 的失败情况和解决办法</h1><ul>
+<li><p><code>Failed to execute goal org.openjfx:javafx-maven-plugin:0.0.3:run (default-cli) on project hellofx: Error</code></p>
+<p><code>JAVA_HOME</code> 与项目需要的版本不一致，为了避免这种情况，可以将正确的版本添加到 <code>javafx-maven-plugin</code>:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjfx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javafx-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">executable</span>&gt;</span>xxx\jdk-xxx\bin\java<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 ]]></content>
-  </entry>
-  <entry>
-    <title>MyBatis 的参数传递</title>
-    <url>/2021/03/22/MyBatis-parameter-passing/</url>
-    <content><![CDATA[<p><a href="https://github.com/mybatis/mybatis-3/issues/549">Obtain formal parameter names using Java reflection · Issue #549 · mybatis/mybatis-3</a></p>
-]]></content>
-      <tags>
-        <tag>MyBatis</tag>
-      </tags>
+      <categories>
+        <category>JavaFX</category>
+      </categories>
   </entry>
   <entry>
     <title>Hexo 文章重命名后的路径访问问题</title>
@@ -272,23 +272,15 @@
       </tags>
   </entry>
   <entry>
-    <title>指定 create-react-app 启动时打开的浏览器</title>
-    <url>/2021/04/02/Specify-the-browser-to-open-when-the-Create-React-App-is-started/</url>
-    <content><![CDATA[<p>默认打开自默认浏览器</p>
-<span id="more"></span>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;start&quot;: &quot;set BROWSER=firefox&amp;&amp; react-scripts start&quot;</span><br></pre></td></tr></table></figure>
-]]></content>
-  </entry>
-  <entry>
     <title>使用 craco</title>
     <url>/2021/04/03/Use-craco/</url>
-    <content><![CDATA[<blockquote><p>Create React App Configuration Override is an easy and comprehensible configuration layer for create-react-app.</p>
+    <content><![CDATA[<p><code>Craco</code> 的配置示例</p>
+<span id="more"></span>
+
+<blockquote><p>Create React App Configuration Override is an easy and comprehensible configuration layer for create-react-app.</p>
 <p>Get all the benefits of <code>create-react-app</code> and customization without using <code>eject</code> by adding a single <code>craco.config.js</code> file at the root of your application and customize your eslint, babel, postcss configurations and many more.</p>
 <p>All you have to do is create your app using <a href="https://create-react-app.dev/">create-react-app</a> and customize the configuration with a craco.config.js file.</p>
 <footer><strong>gsoft-inc</strong><cite><a href="https://github.com/gsoft-inc/craco#craco">CRACO</a></cite></footer></blockquote>
-
-<span id="more"></span>
 
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yarn add -D @craco/craco</span><br></pre></td></tr></table></figure>
 
@@ -301,6 +293,15 @@
 <h1 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> CracoLessPlugin = <span class="built_in">require</span>(<span class="string">&quot;craco-less&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> AntdDayjsWebpackPlugin = <span class="built_in">require</span>(<span class="string">&quot;antd-dayjs-webpack-plugin&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> SimpleProgressWebpackPlugin = <span class="built_in">require</span>(<span class="string">&quot;simple-progress-webpack-plugin&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    &#123;</span><br><span class="line">      plugin: CracoLessPlugin,</span><br><span class="line">      options: &#123;</span><br><span class="line">        lessLoaderOptions: &#123; <span class="attr">lessOptions</span>: &#123; <span class="attr">javascriptEnabled</span>: <span class="literal">true</span> &#125; &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  webpack: &#123;</span><br><span class="line">    plugins: [<span class="keyword">new</span> AntdDayjsWebpackPlugin(), <span class="keyword">new</span> SimpleProgressWebpackPlugin()],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">  &quot;antd-dayjs-webpack-plugin&quot;: &quot;^1.0.6&quot;,</span><br><span class="line">  &quot;craco-less&quot;: &quot;^1.17.1&quot;,</span><br><span class="line">  &quot;simple-progress-webpack-plugin&quot;: &quot;^1.1.2&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>指定 create-react-app 启动时打开的浏览器</title>
+    <url>/2021/04/02/Specify-the-browser-to-open-when-the-Create-React-App-is-started/</url>
+    <content><![CDATA[<p>默认打开自默认浏览器</p>
+<span id="more"></span>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;start&quot;: &quot;set BROWSER=firefox&amp;&amp; react-scripts start&quot;</span><br></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
