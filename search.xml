@@ -16,7 +16,7 @@
 <li><p>按 <code>win + q</code> 或 <code>win + r</code>，搜索 <code>regedit</code> 进入注册表。</p>
 </li>
 <li><p>地址栏输入并进入该条目</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>进入 <code>SoftwareProtectionPlatform</code> 的详情页面后，打开 <code>BackupProductKeyDefault</code>，里面的数值数据就是激活密钥。</p>
 </li>
@@ -40,7 +40,10 @@
 <h1 id="定义反序列化时的别名"><a href="#定义反序列化时的别名" class="headerlink" title="定义反序列化时的别名"></a>定义反序列化时的别名</h1><p>使用注解 <code>@JsonAlias</code>。</p>
 <p>注：可定义属性的一个或<strong>多个</strong>替代名称，在反序列化期间可以接受为<strong>正式名称的替代</strong>。 别名信息在 <code>POJO</code> 内省期间也会公开，但在始终使用主名的序列化过程中无效。</p>
 <p>代码示例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Info</span> </span>&#123;</span><br><span class="line">    <span class="meta">@JsonAlias(&#123; &quot;n&quot;, &quot;Name&quot; &#125;)</span></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Info</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@JsonAlias</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string">"n"</span><span class="token punctuation">,</span> <span class="token string">"Name"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
   </entry>
   <entry>
@@ -79,7 +82,7 @@
 <ol start="3">
 <li>设置如下 <code>VM options</code></li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">--module-path $&#123;PATH_TO_FX&#125; --add-modules javafx.controls,javafx.fxml</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">--module-path $&#123;PATH_TO_FX&#125; --add-modules javafx.controls,javafx.fxml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><code>PATH_TO_FX</code> 即为 JavaFX lib 的路径，这个变量可以配置在系统中也可以配置在<code>IDEA</code>上，亦或直接写上路径。</p>
 <p>配置如下图所示：</p>
@@ -102,7 +105,14 @@
 <li>创建项目</li>
 </ol>
 <p>使用如下的 <code>Maven</code> 命令创建 <code>Java FX</code> 项目：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mvn archetype:generate \</span><br><span class="line">        -DarchetypeGroupId&#x3D;org.openjfx \</span><br><span class="line">        -DarchetypeArtifactId&#x3D;javafx-archetype-simple \</span><br><span class="line">        -DarchetypeVersion&#x3D;0.0.3 \</span><br><span class="line">        -DgroupId&#x3D;包名 \</span><br><span class="line">        -DartifactId&#x3D;项目名 \</span><br><span class="line">        -Dversion&#x3D;1.0.0 \</span><br><span class="line">        -Djavafx-version&#x3D;本地Java版本，如 11、12、。。。</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">mvn archetype:generate \
+        -DarchetypeGroupId&#x3D;org.openjfx \
+        -DarchetypeArtifactId&#x3D;javafx-archetype-simple \
+        -DarchetypeVersion&#x3D;0.0.3 \
+        -DgroupId&#x3D;包名 \
+        -DartifactId&#x3D;项目名 \
+        -Dversion&#x3D;1.0.0 \
+        -Djavafx-version&#x3D;本地Java版本，如 11、12、。。。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>后续也可将 <code>archetype</code> 添加到 <code>IDEA</code> 中</p>
 <img src="/2021/03/05/Getting-started-with-JavaFX/idea-javafx-archetype.jpg" class="" title="javafx-archetype">
@@ -139,16 +149,51 @@
 <li><code>javafx:jlink</code> 创建自定义运行时</li>
 </ul>
 <h1 id="javafx-run-options"><a href="#javafx-run-options" class="headerlink" title="javafx:run options"></a>javafx:run options</h1><p>可能是原始的情况：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">release</span>&gt;</span>11 or 12 13 14 15 ......<span class="tag">&lt;/<span class="name">release</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjfx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javafx-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>xxx.xxx.App<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.maven.plugins<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>maven-compiler-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>3.8.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>release</span><span class="token punctuation">></span></span>11 or 12 13 14 15 ......<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>release</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.openjfx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>javafx-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.0.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mainClass</span><span class="token punctuation">></span></span>xxx.xxx.App<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mainClass</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>参考 <a href="https://github.com/openjfx/javafx-maven-plugin#javafxjlink-options">GitHub - openjfx/javafx-maven-plugin: Maven plugin to run JavaFX 11+ applications</a> 来进行配置</p>
 <p>例如：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stripDebug</span>&gt;</span>true<span class="tag">&lt;/<span class="name">stripDebug</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">compress</span>&gt;</span>2<span class="tag">&lt;/<span class="name">compress</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noHeaderFiles</span>&gt;</span>true<span class="tag">&lt;/<span class="name">noHeaderFiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noManPages</span>&gt;</span>true<span class="tag">&lt;/<span class="name">noManPages</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">launcher</span>&gt;</span>launcher<span class="tag">&lt;/<span class="name">launcher</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jlinkImageName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">jlinkImageName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jlinkZipName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">jlinkZipName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>xxx.xxx.App<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>stripDebug</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>stripDebug</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>compress</span><span class="token punctuation">></span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>compress</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>noHeaderFiles</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>noHeaderFiles</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>noManPages</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>noManPages</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>launcher</span><span class="token punctuation">></span></span>launcher<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>launcher</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>jlinkImageName</span><span class="token punctuation">></span></span>app<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>jlinkImageName</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>jlinkZipName</span><span class="token punctuation">></span></span>app<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>jlinkZipName</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mainClass</span><span class="token punctuation">></span></span>xxx.xxx.App<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mainClass</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="运行-javafx-run-的失败情况和解决办法"><a href="#运行-javafx-run-的失败情况和解决办法" class="headerlink" title="运行 javafx:run 的失败情况和解决办法"></a>运行 <code>javafx:run</code> 的失败情况和解决办法</h1><ul>
 <li><p><code>Failed to execute goal org.openjfx:javafx-maven-plugin:0.0.3:run (default-cli) on project hellofx: Error</code></p>
 <p><code>JAVA_HOME</code> 与项目需要的版本不一致，为了避免这种情况，可以将正确的版本添加到 <code>javafx-maven-plugin</code>:</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjfx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javafx-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">executable</span>&gt;</span>xxx\jdk-xxx\bin\java<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.openjfx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>javafx-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.0.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>executable</span><span class="token punctuation">></span></span>xxx\jdk-xxx\bin\java<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>executable</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 ]]></content>
@@ -252,19 +297,12 @@
 <br />
 
 <p><em>IntelliJ IDEA Version: 2020.3.2</em></p>
-<h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h1 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h1><h1 id="JavaFX"><a href="#JavaFX" class="headerlink" title="JavaFX"></a>JavaFX</h1><h1 id="关闭更新"><a href="#关闭更新" class="headerlink" title="关闭更新"></a>关闭更新</h1><h1 id="自动换行"><a href="#自动换行" class="headerlink" title="自动换行"></a>自动换行</h1><h1 id="文件编码"><a href="#文件编码" class="headerlink" title="文件编码"></a>文件编码</h1><h1 id="关闭自动保存"><a href="#关闭自动保存" class="headerlink" title="关闭自动保存"></a>关闭自动保存</h1><h1 id="代码注释模板"><a href="#代码注释模板" class="headerlink" title="代码注释模板"></a>代码注释模板</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * @author &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;github.com&#x2F;kinglyq&quot; target&#x3D;&quot;_blank&quot;&gt;kinglyq&lt;a&#x2F;&gt;</span><br><span class="line"> *&#x2F;</span><br></pre></td></tr></table></figure>
+<h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h1 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h1><h1 id="JavaFX"><a href="#JavaFX" class="headerlink" title="JavaFX"></a>JavaFX</h1><h1 id="关闭更新"><a href="#关闭更新" class="headerlink" title="关闭更新"></a>关闭更新</h1><h1 id="自动换行"><a href="#自动换行" class="headerlink" title="自动换行"></a>自动换行</h1><h1 id="文件编码"><a href="#文件编码" class="headerlink" title="文件编码"></a>文件编码</h1><h1 id="关闭自动保存"><a href="#关闭自动保存" class="headerlink" title="关闭自动保存"></a>关闭自动保存</h1><h1 id="代码注释模板"><a href="#代码注释模板" class="headerlink" title="代码注释模板"></a>代码注释模板</h1><pre class="line-numbers language-none"><code class="language-none">&#x2F;**
+ * @author &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;github.com&#x2F;kinglyq&quot; target&#x3D;&quot;_blank&quot;&gt;kinglyq&lt;a&#x2F;&gt;
+ *&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="使用-Prettier"><a href="#使用-Prettier" class="headerlink" title="使用 Prettier"></a>使用 Prettier</h1><h1 id="关闭双击-shift-搜索"><a href="#关闭双击-shift-搜索" class="headerlink" title="关闭双击 shift 搜索"></a>关闭双击 shift 搜索</h1><p>按 <code>Crrl+Shift+A</code>，输入 <code>Registry</code>,找到 <code>ide.suppress.double.click.handler</code> 后把 ✔ 打上即可</p>
 <h1 id="关闭提示区分大小写"><a href="#关闭提示区分大小写" class="headerlink" title="关闭提示区分大小写"></a>关闭提示区分大小写</h1><p><code>Editor</code> -&gt; <code>General</code> -&gt; <code>Code Completion</code></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>指定 create-react-app 启动时打开的浏览器</title>
-    <url>/2021/04/02/Specify-the-browser-to-open-when-the-Create-React-App-is-started/</url>
-    <content><![CDATA[<p>默认打开自默认浏览器</p>
-<span id="more"></span>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;start&quot;: &quot;set BROWSER=firefox&amp;&amp; react-scripts start&quot;</span><br></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
@@ -274,11 +312,20 @@
 <span id="more"></span>
 
 <p>进入 <code>Git</code> 仓库执行：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config core.ignorecase false</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git config core.ignorecase false<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 ]]></content>
       <tags>
         <tag>GitHub</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>指定 create-react-app 启动时打开的浏览器</title>
+    <url>/2021/04/02/Specify-the-browser-to-open-when-the-Create-React-App-is-started/</url>
+    <content><![CDATA[<p>默认打开自默认浏览器</p>
+<span id="more"></span>
+
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"start"</span><span class="token operator">:</span> <span class="token string">"set BROWSER=firefox&amp;&amp; react-scripts start"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
   </entry>
   <entry>
     <title>使用 RestTemplate 发送 JSON 或者 x-www-form-urlencoded</title>
@@ -299,12 +346,45 @@
 <p>因为数据位置不同，所以后台获取的方式也不同。</p>
 <hr>
 <p>首先构造一个 <code>RestTemplate</code> 实例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> RestTemplate restTemplate = <span class="keyword">new</span> RestTemplate();</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">RestTemplate</span> restTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RestTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String url = <span class="string">&quot;xxx&quot;</span>;</span><br><span class="line"></span><br><span class="line">HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">headers.setContentType(MediaType.APPLICATION_JSON);</span><br><span class="line"></span><br><span class="line">Map&lt;String, Object&gt; params = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">16</span>);</span><br><span class="line">params.put(<span class="string">&quot;xxx&quot;</span>, <span class="string">&quot;xxx&quot;</span>);</span><br><span class="line">params.put...</span><br><span class="line"></span><br><span class="line">HttpEntity&lt;Map&lt;String, Object&gt;&gt; request = <span class="keyword">new</span> HttpEntity&lt;&gt;(params, headers);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型为接口返回数据的类型</span></span><br><span class="line">ResponseEntity&lt;Object&gt; response = restTemplate.postForEntity(url, request, Object.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取响应主体</span></span><br><span class="line">response.getBody()；</span><br></pre></td></tr></table></figure>
+<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token string">"xxx"</span><span class="token punctuation">;</span>
+
+<span class="token class-name">HttpHeaders</span> headers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+headers<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> params <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"xxx"</span><span class="token punctuation">,</span> <span class="token string">"xxx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span>put<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token class-name">HttpEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Map</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span><span class="token punctuation">></span></span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> headers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 泛型为接口返回数据的类型</span>
+<span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> response <span class="token operator">=</span> restTemplate<span class="token punctuation">.</span><span class="token function">postForEntity</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> request<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 获取响应主体</span>
+response<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span>；<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="x-www-form-urlencoded"><a href="#x-www-form-urlencoded" class="headerlink" title="x-www-form-urlencoded"></a>x-www-form-urlencoded</h1><p>使用 <a href="https://www.javadoc.io/doc/org.springframework/spring-core/latest/org/springframework/util/LinkedMultiValueMap.html"><code>LinkedMultiValueMap</code></a> 构造数据。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String url = <span class="string">&quot;http://localhost:6501/api/v1/req-form-urlencoded&quot;</span>;</span><br><span class="line"></span><br><span class="line">HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);</span><br><span class="line"></span><br><span class="line">LinkedMultiValueMap&lt;String, Object&gt; params = <span class="keyword">new</span> LinkedMultiValueMap&lt;&gt;();</span><br><span class="line">params.add(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;Martin&quot;</span>);</span><br><span class="line">params.add(<span class="string">&quot;age&quot;</span>, <span class="number">22</span>);</span><br><span class="line">params.add(<span class="string">&quot;gender&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">params.add...</span><br><span class="line"></span><br><span class="line">HttpEntity&lt;LinkedMultiValueMap&lt;String, Object&gt;&gt; request = <span class="keyword">new</span> HttpEntity&lt;&gt;(params,</span><br><span class="line">        headers);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型为接口返回数据的类型</span></span><br><span class="line">ResponseEntity&lt;Object&gt; response = restTemplate.postForEntity(url, request, Object.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取响应主体</span></span><br><span class="line">response.getBody()；</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token string">"xxx"</span><span class="token punctuation">;</span>
+
+<span class="token class-name">HttpHeaders</span> headers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+headers<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_FORM_URLENCODED<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">LinkedMultiValueMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> params <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedMultiValueMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"Martin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"gender"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span>add<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token class-name">HttpEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">LinkedMultiValueMap</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span><span class="token punctuation">></span></span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>params<span class="token punctuation">,</span>
+        headers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 泛型为接口返回数据的类型</span>
+<span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> response <span class="token operator">=</span> restTemplate<span class="token punctuation">.</span><span class="token function">postForEntity</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> request<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 获取响应主体</span>
+response<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span>；<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
   </entry>
   <entry>
@@ -318,17 +398,49 @@
 <p>All you have to do is create your app using <a href="https://create-react-app.dev/">create-react-app</a> and customize the configuration with a craco.config.js file.</p>
 <footer><strong>gsoft-inc</strong><cite><a href="https://github.com/gsoft-inc/craco#craco">CRACO</a></cite></footer></blockquote>
 
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yarn add -D @craco/craco</span><br></pre></td></tr></table></figure>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">yarn add -D @craco&#x2F;craco<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>创建配置文件：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">my-app</span><br><span class="line">├── node_modules</span><br><span class="line">├── craco.config.js</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">my-app
+├── node_modules
+├── craco.config.js
+└── package.json<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>更新脚本命令</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">/* package.json */</span><br><span class="line"></span><br><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line"><span class="deletion">-   &quot;start&quot;: &quot;react-scripts start&quot;,</span></span><br><span class="line"><span class="addition">+   &quot;start&quot;: &quot;craco start&quot;,</span></span><br><span class="line"><span class="deletion">-   &quot;build&quot;: &quot;react-scripts build&quot;,</span></span><br><span class="line"><span class="addition">+   &quot;build&quot;: &quot;craco build&quot;</span></span><br><span class="line"><span class="deletion">-   &quot;test&quot;: &quot;react-scripts test&quot;,</span></span><br><span class="line"><span class="addition">+   &quot;test&quot;: &quot;craco test&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-diff" data-language="diff"><code class="language-diff">/* package.json */
 
-<h1 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> CracoLessPlugin = <span class="built_in">require</span>(<span class="string">&quot;craco-less&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> AntdDayjsWebpackPlugin = <span class="built_in">require</span>(<span class="string">&quot;antd-dayjs-webpack-plugin&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> SimpleProgressWebpackPlugin = <span class="built_in">require</span>(<span class="string">&quot;simple-progress-webpack-plugin&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    &#123;</span><br><span class="line">      plugin: CracoLessPlugin,</span><br><span class="line">      options: &#123;</span><br><span class="line">        lessLoaderOptions: &#123; <span class="attr">lessOptions</span>: &#123; <span class="attr">javascriptEnabled</span>: <span class="literal">true</span> &#125; &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  webpack: &#123;</span><br><span class="line">    plugins: [<span class="keyword">new</span> AntdDayjsWebpackPlugin(), <span class="keyword">new</span> SimpleProgressWebpackPlugin()],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+"scripts": &#123;
+<span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">   "start": "react-scripts start",
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">   "start": "craco start",
+</span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">   "build": "react-scripts build",
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">   "build": "craco build"
+</span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">   "test": "react-scripts test",
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">   "test": "craco test"
+</span></span>&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">  &quot;antd-dayjs-webpack-plugin&quot;: &quot;^1.0.6&quot;,</span><br><span class="line">  &quot;craco-less&quot;: &quot;^1.17.1&quot;,</span><br><span class="line">  &quot;simple-progress-webpack-plugin&quot;: &quot;^1.1.2&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h1><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> CracoLessPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"craco-less"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> AntdDayjsWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"antd-dayjs-webpack-plugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> SimpleProgressWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"simple-progress-webpack-plugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">&#123;</span>
+      plugin<span class="token operator">:</span> CracoLessPlugin<span class="token punctuation">,</span>
+      options<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        lessLoaderOptions<span class="token operator">:</span> <span class="token punctuation">&#123;</span> lessOptions<span class="token operator">:</span> <span class="token punctuation">&#123;</span> javascriptEnabled<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  webpack<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token keyword">new</span> <span class="token class-name">AntdDayjsWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">SimpleProgressWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">"antd-dayjs-webpack-plugin"</span><span class="token operator">:</span> <span class="token string">"^1.0.6"</span><span class="token punctuation">,</span>
+  <span class="token property">"craco-less"</span><span class="token operator">:</span> <span class="token string">"^1.17.1"</span><span class="token punctuation">,</span>
+  <span class="token property">"simple-progress-webpack-plugin"</span><span class="token operator">:</span> <span class="token string">"^1.1.2"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
   </entry>
   <entry>
@@ -343,51 +455,75 @@
 
 <h2 id="引用块"><a href="#引用块" class="headerlink" title="引用块"></a>引用块</h2><p>在文章中插入引言，可包含作者、来源和标题</p>
 <p>别号： quote</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% blockquote [author[, source]] [link] [source_link_title] %&#125;</span><br><span class="line">content</span><br><span class="line">&#123;% endblockquote %&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% blockquote [author[, source]] [link] [source_link_title] %&#125;
+content
+&#123;% endblockquote %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h2><p>在文章中插入 iframe。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% iframe url [width] [height] %&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% iframe url [width] [height] %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="文章摘要和截断"><a href="#文章摘要和截断" class="headerlink" title="文章摘要和截断"></a>文章摘要和截断</h2><p>在文章中使用 <code>&lt;!-- more --&gt;</code>，那么 <code>&lt;!-- more --&gt;</code> 之前的文字将会被视为摘要。首页中将只出现这部分文字，同时这部分文字也会出现在正文之中。</p>
 <h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>在文章中插入代码。</p>
 <p>别名： code</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% codeblock [title] [lang:language] [url] [link text] [additional options] %&#125;</span><br><span class="line">code snippet</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% codeblock [title] [lang:language] [url] [link text] [additional options] %&#125;
+code snippet
+&#123;% endcodeblock %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <ol>
 <li>普通的代码块</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% codeblock %&#125;</span><br><span class="line">alert(&#39;Hello World!&#39;);</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% codeblock %&#125;
+alert(&#39;Hello World!&#39;);
+&#123;% endcodeblock %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alert(&#39;Hello World!&#39;);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">alert(&#39;Hello World!&#39;);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ol start="2">
 <li>指定语言</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% codeblock lang:objc %&#125;</span><br><span class="line">[rectangle setX: 10 y: 10 width: 20 height: 20];</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% codeblock lang:objc %&#125;
+[rectangle setX: 10 y: 10 width: 20 height: 20];
+&#123;% endcodeblock %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">[rectangle setX: <span class="number">10</span> y: <span class="number">10</span> width: <span class="number">20</span> height: <span class="number">20</span>];</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-objc" data-language="objc"><code class="language-objc">[rectangle setX: 10 y: 10 width: 20 height: 20];<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ol start="3">
 <li>附加说明和网址</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% codeblock lang:js Array.map https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;docs&#x2F;Web&#x2F;JavaScript&#x2F;Reference&#x2F;Global_Objects&#x2F;Array&#x2F;map Array.prototype.map() - JavaScript | MDN %&#125;</span><br><span class="line">const array1 &#x3D; [1, 4, 9, 16];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; pass a function to map</span><br><span class="line">const map1 &#x3D; array1.map(x &#x3D;&gt; x * 2);</span><br><span class="line"></span><br><span class="line">console.log(map1);</span><br><span class="line">&#x2F;&#x2F; expected output: Array [2, 8, 18, 32]</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% codeblock lang:js Array.map https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;docs&#x2F;Web&#x2F;JavaScript&#x2F;Reference&#x2F;Global_Objects&#x2F;Array&#x2F;map Array.prototype.map() - JavaScript | MDN %&#125;
+const array1 &#x3D; [1, 4, 9, 16];
 
-<figure class="highlight js"><figcaption><span>Array.map</span><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">Array.prototype.map() - JavaScript | MDN</a></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// pass a function to map</span></span><br><span class="line"><span class="keyword">const</span> map1 = array1.map(<span class="function"><span class="params">x</span> =&gt;</span> x \* <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(map1);</span><br><span class="line"><span class="comment">// expected output: Array [2, 8, 18, 32]</span></span><br></pre></td></tr></table></figure>
+&#x2F;&#x2F; pass a function to map
+const map1 &#x3D; array1.map(x &#x3D;&gt; x * 2);
+
+console.log(map1);
+&#x2F;&#x2F; expected output: Array [2, 8, 18, 32]
+&#123;% endcodeblock %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-js" data-language="js"><div class="caption"><span>Array.map</span><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">Array.prototype.map() - JavaScript | MDN</a></div><code class="language-js"><span class="token keyword">const</span> array1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// pass a function to map</span>
+<span class="token keyword">const</span> map1 <span class="token operator">=</span> array1<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=></span> x \<span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>map1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// expected output: Array [2, 8, 18, 32]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="反引号代码块"><a href="#反引号代码块" class="headerlink" title="反引号代码块"></a>反引号代码块</h2><p>另一种形式的代码块，不同的是它使用三个反引号来包裹。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#96;&#96;&#96; [language] [title] [url] [link text] code snippet &#96;&#96;&#96;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#96;&#96;&#96; [language] [title] [url] [link text] code snippet &#96;&#96;&#96;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p>在文章中插入链接，并自动给外部链接添加 <code>target=&quot;_blank&quot;</code> 属性。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% link text url [external] [title] %&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% link text url [external] [title] %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h1 id="资源的引用"><a href="#资源的引用" class="headerlink" title="资源的引用"></a>资源的引用</h1><blockquote>
 <p>资源（Asset）代表 <code>source</code> 文件夹中除了文章以外的所有文件，例如图片、CSS、JS 文件等。比方说，如果你的 Hexo 项目中只有少量图片，那最简单的方法就是将它们放在 <code>source/images</code> 文件夹中。然后通过类似于 <code>![](/images/image.jpg)</code> 的方法访问它们。</p>
 </blockquote>
 <p>将 <code>config.yml</code> 文件中的 <code>post_asset_folder</code> 选项设为 <code>true</code> 来打开，这样 Hexo 将会在你每一次通过<code> hexo new [layout] &lt;title&gt;</code> 命令创建新文章时自动创建一个与文章同名的文件夹，当然也可以手动创建。</p>
-<figure class="highlight yml"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-yml" data-language="yml"><div class="caption"><span>_config.yml</span></div><code class="language-yml">post_asset_folder: true<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>通过常规的 <code>markdown</code> 语法和相对路径来引用图片和其它资源可能会导致它们在存档页或者主页上显示不正确。使用以下 <code>Hexo</code> 标签来加载资源：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% asset_path slug %&#125;</span><br><span class="line">&#123;% asset_img slug [title] %&#125;</span><br><span class="line">&#123;% asset_link slug [title] %&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% asset_path slug %&#125;
+&#123;% asset_img slug [title] %&#125;
+&#123;% asset_link slug [title] %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>例如：<code>&#123;% asset_img Pikachu.jpg Pikachu %&#125;</code></p>
 <img src="/2021/02/21/Writing-with-Hexo/Pikachu.jpg" class="" title="Pikachu">
