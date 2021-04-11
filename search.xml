@@ -126,13 +126,35 @@
 ]]></content>
   </entry>
   <entry>
-    <title>MyBatis 的参数传递</title>
-    <url>/2021/03/22/MyBatis-parameter-passing/</url>
-    <content><![CDATA[<p><a href="https://github.com/mybatis/mybatis-3/issues/549">Obtain formal parameter names using Java reflection · Issue #549 · mybatis/mybatis-3</a></p>
+    <title>JavaFX Runtime images (Java 11+)</title>
+    <url>/2021/03/09/JavaFX-runtime-images/</url>
+    <content><![CDATA[<p>JavaFX 项目的 <code>Runtime images</code> 是一个自定义 JRE，它仅包含应用程序所需的平台模块。</p>
+<p>本文仅针对通过 <code>Maven</code> 构建的项目.</p>
+<span id="more"></span>
+
+<h1 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h1><p>构建的成功与否几乎都取决于 <code>pom.xml</code> 中关于插件的配置，下面会针对这部分进行阐述。</p>
+<p><code>javafx-maven-plugin</code>有两个主要的命令 —— <code>javafx:run</code> 和 <code>javafx:jlink</code></p>
+<ul>
+<li><code>javafx:run</code> 进行编译和运行</li>
+<li><code>javafx:jlink</code> 创建自定义运行时</li>
+</ul>
+<h1 id="javafx-run-options"><a href="#javafx-run-options" class="headerlink" title="javafx:run options"></a>javafx:run options</h1><p>可能是原始的情况：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">release</span>&gt;</span>11 or 12 13 14 15 ......<span class="tag">&lt;/<span class="name">release</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjfx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javafx-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>xxx.xxx.App<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>参考 <a href="https://github.com/openjfx/javafx-maven-plugin#javafxjlink-options">GitHub - openjfx/javafx-maven-plugin: Maven plugin to run JavaFX 11+ applications</a> 来进行配置</p>
+<p>例如：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stripDebug</span>&gt;</span>true<span class="tag">&lt;/<span class="name">stripDebug</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">compress</span>&gt;</span>2<span class="tag">&lt;/<span class="name">compress</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noHeaderFiles</span>&gt;</span>true<span class="tag">&lt;/<span class="name">noHeaderFiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noManPages</span>&gt;</span>true<span class="tag">&lt;/<span class="name">noManPages</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">launcher</span>&gt;</span>launcher<span class="tag">&lt;/<span class="name">launcher</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jlinkImageName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">jlinkImageName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jlinkZipName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">jlinkZipName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>xxx.xxx.App<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="运行-javafx-run-的失败情况和解决办法"><a href="#运行-javafx-run-的失败情况和解决办法" class="headerlink" title="运行 javafx:run 的失败情况和解决办法"></a>运行 <code>javafx:run</code> 的失败情况和解决办法</h1><ul>
+<li><p><code>Failed to execute goal org.openjfx:javafx-maven-plugin:0.0.3:run (default-cli) on project hellofx: Error</code></p>
+<p><code>JAVA_HOME</code> 与项目需要的版本不一致，为了避免这种情况，可以将正确的版本添加到 <code>javafx-maven-plugin</code>:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjfx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javafx-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">executable</span>&gt;</span>xxx\jdk-xxx\bin\java<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 ]]></content>
-      <tags>
-        <tag>MyBatis</tag>
-      </tags>
+      <categories>
+        <category>JavaFX</category>
+      </categories>
   </entry>
   <entry>
     <title>MyBatis 支持的 JDBC 类型</title>
@@ -200,35 +222,13 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaFX Runtime images (Java 11+)</title>
-    <url>/2021/03/09/JavaFX-runtime-images/</url>
-    <content><![CDATA[<p>JavaFX 项目的 <code>Runtime images</code> 是一个自定义 JRE，它仅包含应用程序所需的平台模块。</p>
-<p>本文仅针对通过 <code>Maven</code> 构建的项目.</p>
-<span id="more"></span>
-
-<h1 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h1><p>构建的成功与否几乎都取决于 <code>pom.xml</code> 中关于插件的配置，下面会针对这部分进行阐述。</p>
-<p><code>javafx-maven-plugin</code>有两个主要的命令 —— <code>javafx:run</code> 和 <code>javafx:jlink</code></p>
-<ul>
-<li><code>javafx:run</code> 进行编译和运行</li>
-<li><code>javafx:jlink</code> 创建自定义运行时</li>
-</ul>
-<h1 id="javafx-run-options"><a href="#javafx-run-options" class="headerlink" title="javafx:run options"></a>javafx:run options</h1><p>可能是原始的情况：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">release</span>&gt;</span>11 or 12 13 14 15 ......<span class="tag">&lt;/<span class="name">release</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjfx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javafx-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>xxx.xxx.App<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>参考 <a href="https://github.com/openjfx/javafx-maven-plugin#javafxjlink-options">GitHub - openjfx/javafx-maven-plugin: Maven plugin to run JavaFX 11+ applications</a> 来进行配置</p>
-<p>例如：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stripDebug</span>&gt;</span>true<span class="tag">&lt;/<span class="name">stripDebug</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">compress</span>&gt;</span>2<span class="tag">&lt;/<span class="name">compress</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noHeaderFiles</span>&gt;</span>true<span class="tag">&lt;/<span class="name">noHeaderFiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noManPages</span>&gt;</span>true<span class="tag">&lt;/<span class="name">noManPages</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">launcher</span>&gt;</span>launcher<span class="tag">&lt;/<span class="name">launcher</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jlinkImageName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">jlinkImageName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jlinkZipName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">jlinkZipName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>xxx.xxx.App<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="运行-javafx-run-的失败情况和解决办法"><a href="#运行-javafx-run-的失败情况和解决办法" class="headerlink" title="运行 javafx:run 的失败情况和解决办法"></a>运行 <code>javafx:run</code> 的失败情况和解决办法</h1><ul>
-<li><p><code>Failed to execute goal org.openjfx:javafx-maven-plugin:0.0.3:run (default-cli) on project hellofx: Error</code></p>
-<p><code>JAVA_HOME</code> 与项目需要的版本不一致，为了避免这种情况，可以将正确的版本添加到 <code>javafx-maven-plugin</code>:</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjfx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javafx-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">executable</span>&gt;</span>xxx\jdk-xxx\bin\java<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+    <title>MyBatis 的参数传递</title>
+    <url>/2021/03/22/MyBatis-parameter-passing/</url>
+    <content><![CDATA[<p><a href="https://github.com/mybatis/mybatis-3/issues/549">Obtain formal parameter names using Java reflection · Issue #549 · mybatis/mybatis-3</a></p>
 ]]></content>
-      <categories>
-        <category>JavaFX</category>
-      </categories>
+      <tags>
+        <tag>MyBatis</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hexo 文章重命名后的路径访问问题</title>
@@ -272,6 +272,42 @@
       </tags>
   </entry>
   <entry>
+    <title>指定 create-react-app 启动时打开的浏览器</title>
+    <url>/2021/04/02/Specify-the-browser-to-open-when-the-Create-React-App-is-started/</url>
+    <content><![CDATA[<p>默认打开自默认浏览器</p>
+<span id="more"></span>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;start&quot;: &quot;set BROWSER=firefox&amp;&amp; react-scripts start&quot;</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>使用 RestTemplate 发送 JSON 或者 x-www-form-urlencoded</title>
+    <url>/2021/04/11/Use-RestTemplate-to-send-JSON-or-x-www-form-urlencoded/</url>
+    <content><![CDATA[<p>二者的区别：</p>
+<ol>
+<li><p><a href="https://baike.baidu.com/item/JSON">JSON</a></p>
+<p> <code>Content-Type</code> 被设置为 <code>application/json</code>，数据以 <code>JSON</code> 格式放在<strong>请求体</strong>中。</p>
+</li>
+</ol>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>application/x-www-form-urlencoded</p>
+<p> 浏览器原生表单默认的编码方式，数据被编码成以 <code>&amp;</code> 分隔的键-值对, 同时以 <code>=</code> 分隔键和值。 非字母或数字的字符会被 <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/percent-encoding">percent-encoding</a>：这也就是为什么这种类型不支持二进制数据（应使用 <code>multipart/form-data</code> 代替）。</p>
+</li>
+</ol>
+<p>因为数据位置不同，所以后台获取的方式也不同。</p>
+<hr>
+<p>首先构造一个 <code>RestTemplate</code> 实例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> RestTemplate restTemplate = <span class="keyword">new</span> RestTemplate();</span><br></pre></td></tr></table></figure>
+
+<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String url = <span class="string">&quot;xxx&quot;</span>;</span><br><span class="line"></span><br><span class="line">HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">headers.setContentType(MediaType.APPLICATION_JSON);</span><br><span class="line"></span><br><span class="line">Map&lt;String, Object&gt; params = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">16</span>);</span><br><span class="line">params.put(<span class="string">&quot;xxx&quot;</span>, <span class="string">&quot;xxx&quot;</span>);</span><br><span class="line">params.put...</span><br><span class="line"></span><br><span class="line">HttpEntity&lt;Map&lt;String, Object&gt;&gt; request = <span class="keyword">new</span> HttpEntity&lt;&gt;(params, headers);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型为接口返回数据的类型</span></span><br><span class="line">ResponseEntity&lt;Object&gt; response = restTemplate.postForEntity(url, request, Object.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取响应主体</span></span><br><span class="line">response.getBody()；</span><br></pre></td></tr></table></figure>
+
+<h1 id="x-www-form-urlencoded"><a href="#x-www-form-urlencoded" class="headerlink" title="x-www-form-urlencoded"></a>x-www-form-urlencoded</h1><p>使用 <a href="https://www.javadoc.io/doc/org.springframework/spring-core/latest/org/springframework/util/LinkedMultiValueMap.html"><code>LinkedMultiValueMap</code></a> 构造数据。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String url = <span class="string">&quot;http://localhost:6501/api/v1/req-form-urlencoded&quot;</span>;</span><br><span class="line"></span><br><span class="line">HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);</span><br><span class="line"></span><br><span class="line">LinkedMultiValueMap&lt;String, Object&gt; params = <span class="keyword">new</span> LinkedMultiValueMap&lt;&gt;();</span><br><span class="line">params.add(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;Martin&quot;</span>);</span><br><span class="line">params.add(<span class="string">&quot;age&quot;</span>, <span class="number">22</span>);</span><br><span class="line">params.add(<span class="string">&quot;gender&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">params.add...</span><br><span class="line"></span><br><span class="line">HttpEntity&lt;LinkedMultiValueMap&lt;String, Object&gt;&gt; request = <span class="keyword">new</span> HttpEntity&lt;&gt;(params,</span><br><span class="line">        headers);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型为接口返回数据的类型</span></span><br><span class="line">ResponseEntity&lt;Object&gt; response = restTemplate.postForEntity(url, request, Object.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取响应主体</span></span><br><span class="line">response.getBody()；</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
     <title>使用 craco</title>
     <url>/2021/04/03/Use-craco/</url>
     <content><![CDATA[<p><code>Craco</code> 的配置示例</p>
@@ -293,15 +329,6 @@
 <h1 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> CracoLessPlugin = <span class="built_in">require</span>(<span class="string">&quot;craco-less&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> AntdDayjsWebpackPlugin = <span class="built_in">require</span>(<span class="string">&quot;antd-dayjs-webpack-plugin&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> SimpleProgressWebpackPlugin = <span class="built_in">require</span>(<span class="string">&quot;simple-progress-webpack-plugin&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    &#123;</span><br><span class="line">      plugin: CracoLessPlugin,</span><br><span class="line">      options: &#123;</span><br><span class="line">        lessLoaderOptions: &#123; <span class="attr">lessOptions</span>: &#123; <span class="attr">javascriptEnabled</span>: <span class="literal">true</span> &#125; &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  webpack: &#123;</span><br><span class="line">    plugins: [<span class="keyword">new</span> AntdDayjsWebpackPlugin(), <span class="keyword">new</span> SimpleProgressWebpackPlugin()],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">  &quot;antd-dayjs-webpack-plugin&quot;: &quot;^1.0.6&quot;,</span><br><span class="line">  &quot;craco-less&quot;: &quot;^1.17.1&quot;,</span><br><span class="line">  &quot;simple-progress-webpack-plugin&quot;: &quot;^1.1.2&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-  </entry>
-  <entry>
-    <title>指定 create-react-app 启动时打开的浏览器</title>
-    <url>/2021/04/02/Specify-the-browser-to-open-when-the-Create-React-App-is-started/</url>
-    <content><![CDATA[<p>默认打开自默认浏览器</p>
-<span id="more"></span>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;start&quot;: &quot;set BROWSER=firefox&amp;&amp; react-scripts start&quot;</span><br></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
