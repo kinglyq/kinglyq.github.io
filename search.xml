@@ -187,6 +187,26 @@
       </categories>
   </entry>
   <entry>
+    <title>Java JSON library - Jackson 的使用</title>
+    <url>/2021/03/16/Jackson-s-application-memo/</url>
+    <content><![CDATA[<p>从实际使用的角度列出对 <code>Jackson</code> 的一些操作。</p>
+<span id="more"></span>
+
+<p>What is Jackson?</p>
+<blockquote><p>Jackson has been known as “the Java JSON library” or “the best JSON parser for Java”. Or simply as “JSON for Java”.</p>
+<footer><strong>@FasterXML</strong><cite><a href="https://github.com/FasterXML/jackson#what-is-jackson">GitHub - FasterXML/jackson</a></cite></footer></blockquote>
+
+<h1 id="只在序列化或反序列化时忽略"><a href="#只在序列化或反序列化时忽略" class="headerlink" title="只在序列化或反序列化时忽略"></a>只在序列化或反序列化时忽略</h1><p>使用注解 <code>@JsonProperty</code> 的 <code>access</code> 属性。</p>
+<h1 id="定义反序列化时的别名"><a href="#定义反序列化时的别名" class="headerlink" title="定义反序列化时的别名"></a>定义反序列化时的别名</h1><p>使用注解 <code>@JsonAlias</code>。</p>
+<p>注：可定义属性的一个或<strong>多个</strong>替代名称，在反序列化期间可以接受为<strong>正式名称的替代</strong>。 别名信息在 <code>POJO</code> 内省期间也会公开，但在始终使用主名的序列化过程中无效。</p>
+<p>代码示例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Info</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@JsonAlias</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string">"n"</span><span class="token punctuation">,</span> <span class="token string">"Name"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+]]></content>
+  </entry>
+  <entry>
     <title>JavaFX Runtime images (Java 11+)</title>
     <url>/2021/03/09/JavaFX-runtime-images/</url>
     <content><![CDATA[<p>JavaFX 项目的 <code>Runtime images</code> 是一个自定义 JRE，它仅包含应用程序所需的平台模块。</p>
@@ -251,26 +271,6 @@
       <categories>
         <category>JavaFX</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Java JSON library - Jackson 的使用</title>
-    <url>/2021/03/16/Jackson-s-application-memo/</url>
-    <content><![CDATA[<p>从实际使用的角度列出对 <code>Jackson</code> 的一些操作。</p>
-<span id="more"></span>
-
-<p>What is Jackson?</p>
-<blockquote><p>Jackson has been known as “the Java JSON library” or “the best JSON parser for Java”. Or simply as “JSON for Java”.</p>
-<footer><strong>@FasterXML</strong><cite><a href="https://github.com/FasterXML/jackson#what-is-jackson">GitHub - FasterXML/jackson</a></cite></footer></blockquote>
-
-<h1 id="只在序列化或反序列化时忽略"><a href="#只在序列化或反序列化时忽略" class="headerlink" title="只在序列化或反序列化时忽略"></a>只在序列化或反序列化时忽略</h1><p>使用注解 <code>@JsonProperty</code> 的 <code>access</code> 属性。</p>
-<h1 id="定义反序列化时的别名"><a href="#定义反序列化时的别名" class="headerlink" title="定义反序列化时的别名"></a>定义反序列化时的别名</h1><p>使用注解 <code>@JsonAlias</code>。</p>
-<p>注：可定义属性的一个或<strong>多个</strong>替代名称，在反序列化期间可以接受为<strong>正式名称的替代</strong>。 别名信息在 <code>POJO</code> 内省期间也会公开，但在始终使用主名的序列化过程中无效。</p>
-<p>代码示例：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Info</span> <span class="token punctuation">&#123;</span>
-    <span class="token annotation punctuation">@JsonAlias</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string">"n"</span><span class="token punctuation">,</span> <span class="token string">"Name"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-]]></content>
   </entry>
   <entry>
     <title>MyBatis 支持的 JDBC 类型</title>
@@ -347,33 +347,6 @@
       </tags>
   </entry>
   <entry>
-    <title>IntelliJ IDEA 的个人配置</title>
-    <url>/2021/03/17/Personal-configuration-of-IntelliJ-IDEA/</url>
-    <content><![CDATA[<blockquote><p>功能强大，符合人体工程学的 JVM IDE</p>
-<footer><strong>JetBrains</strong><cite><a href="https://www.jetbrains.com/zh-cn/idea/">IntelliJ IDEA：JetBrains</a></cite></footer></blockquote>
-
-<span id="more"></span>
-<br />
-
-<p><em>IntelliJ IDEA Version: 2020.3.2</em></p>
-<h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h1 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h1><h1 id="JavaFX"><a href="#JavaFX" class="headerlink" title="JavaFX"></a>JavaFX</h1><h1 id="关闭更新"><a href="#关闭更新" class="headerlink" title="关闭更新"></a>关闭更新</h1><h1 id="自动换行"><a href="#自动换行" class="headerlink" title="自动换行"></a>自动换行</h1><h1 id="文件编码"><a href="#文件编码" class="headerlink" title="文件编码"></a>文件编码</h1><h1 id="关闭自动保存"><a href="#关闭自动保存" class="headerlink" title="关闭自动保存"></a>关闭自动保存</h1><h1 id="代码注释模板"><a href="#代码注释模板" class="headerlink" title="代码注释模板"></a>代码注释模板</h1><pre class="line-numbers language-none"><code class="language-none">&#x2F;**
- * @author &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;github.com&#x2F;kinglyq&quot; target&#x3D;&quot;_blank&quot;&gt;kinglyq&lt;a&#x2F;&gt;
- *&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="使用-Prettier"><a href="#使用-Prettier" class="headerlink" title="使用 Prettier"></a>使用 Prettier</h1><h1 id="关闭双击-shift-搜索"><a href="#关闭双击-shift-搜索" class="headerlink" title="关闭双击 shift 搜索"></a>关闭双击 shift 搜索</h1><p>按 <code>Crrl+Shift+A</code>，输入 <code>Registry</code>,找到 <code>ide.suppress.double.click.handler</code> 后把 ✔ 打上即可</p>
-<h1 id="关闭提示区分大小写"><a href="#关闭提示区分大小写" class="headerlink" title="关闭提示区分大小写"></a>关闭提示区分大小写</h1><p><code>Editor</code> -&gt; <code>General</code> -&gt; <code>Code Completion</code></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>指定 create-react-app 启动时打开的浏览器</title>
-    <url>/2021/04/02/Specify-the-browser-to-open-when-the-Create-React-App-is-started/</url>
-    <content><![CDATA[<p>默认打开自默认浏览器</p>
-<span id="more"></span>
-
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"start"</span><span class="token operator">:</span> <span class="token string">"set BROWSER=firefox&amp;&amp; react-scripts start"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-]]></content>
-  </entry>
-  <entry>
     <title>Hexo 文章重命名后的路径访问问题</title>
     <url>/2021/03/25/Path-access-problem-after-Hexo-post-is-renamed/</url>
     <content><![CDATA[<p>修改了文章文件名的大小写后，发现其部署到 <code>GitHub</code> 后并没有变化。。。</p>
@@ -386,60 +359,28 @@
       </tags>
   </entry>
   <entry>
-    <title>使用 craco</title>
-    <url>/2021/04/03/Use-craco/</url>
-    <content><![CDATA[<p><code>Craco</code> 的配置示例</p>
+    <title>IntelliJ IDEA 的个人配置</title>
+    <url>/2021/03/17/Personal-configuration-of-IntelliJ-IDEA/</url>
+    <content><![CDATA[<blockquote><p>功能强大，符合人体工程学的 JVM IDE</p>
+<footer><strong>JetBrains</strong><cite><a href="https://www.jetbrains.com/zh-cn/idea/">IntelliJ IDEA：JetBrains</a></cite></footer></blockquote>
+
 <span id="more"></span>
+<br />
 
-<blockquote><p>Create React App Configuration Override is an easy and comprehensible configuration layer for create-react-app.</p>
-<p>Get all the benefits of <code>create-react-app</code> and customization without using <code>eject</code> by adding a single <code>craco.config.js</code> file at the root of your application and customize your eslint, babel, postcss configurations and many more.</p>
-<p>All you have to do is create your app using <a href="https://create-react-app.dev/">create-react-app</a> and customize the configuration with a craco.config.js file.</p>
-<footer><strong>gsoft-inc</strong><cite><a href="https://github.com/gsoft-inc/craco#craco">CRACO</a></cite></footer></blockquote>
+<h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h1 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h1><h1 id="JavaFX"><a href="#JavaFX" class="headerlink" title="JavaFX"></a>JavaFX</h1><h1 id="关闭更新"><a href="#关闭更新" class="headerlink" title="关闭更新"></a>关闭更新</h1><h1 id="自动换行"><a href="#自动换行" class="headerlink" title="自动换行"></a>自动换行</h1><h1 id="文件编码"><a href="#文件编码" class="headerlink" title="文件编码"></a>文件编码</h1><h1 id="关闭自动保存"><a href="#关闭自动保存" class="headerlink" title="关闭自动保存"></a>关闭自动保存</h1><img src="/2021/03/17/Personal-configuration-of-IntelliJ-IDEA/auto-save.jpg" class="" title="关闭自动保存">
 
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">yarn add -D @craco&#x2F;craco<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<img src="/2021/03/17/Personal-configuration-of-IntelliJ-IDEA/star-mark.jpg" class="" title="星号标记">
 
-<p>创建配置文件：</p>
-<pre class="line-numbers language-none"><code class="language-none">my-app
-├── node_modules
-├── craco.config.js
-└── package.json<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="代码注释模板"><a href="#代码注释模板" class="headerlink" title="代码注释模板"></a>代码注释模板</h1><pre class="line-numbers language-none"><code class="language-none">&#x2F;**
+ * @author &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;github.com&#x2F;kinglyq&quot; target&#x3D;&quot;_blank&quot;&gt;kinglyq&lt;a&#x2F;&gt;
+ *&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p>更新脚本命令</p>
-<pre class="line-numbers language-diff" data-language="diff"><code class="language-diff">/* package.json */
-
-"scripts": &#123;
-<span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">   "start": "react-scripts start",
-</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">   "start": "craco start",
-</span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">   "build": "react-scripts build",
-</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">   "build": "craco build"
-</span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">   "test": "react-scripts test",
-</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">   "test": "craco test"
-</span></span>&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h1><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> CracoLessPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"craco-less"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> AntdDayjsWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"antd-dayjs-webpack-plugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> SimpleProgressWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"simple-progress-webpack-plugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-  plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token punctuation">&#123;</span>
-      plugin<span class="token operator">:</span> CracoLessPlugin<span class="token punctuation">,</span>
-      options<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        lessLoaderOptions<span class="token operator">:</span> <span class="token punctuation">&#123;</span> lessOptions<span class="token operator">:</span> <span class="token punctuation">&#123;</span> javascriptEnabled<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token punctuation">]</span><span class="token punctuation">,</span>
-  webpack<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token keyword">new</span> <span class="token class-name">AntdDayjsWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">SimpleProgressWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">"antd-dayjs-webpack-plugin"</span><span class="token operator">:</span> <span class="token string">"^1.0.6"</span><span class="token punctuation">,</span>
-  <span class="token property">"craco-less"</span><span class="token operator">:</span> <span class="token string">"^1.17.1"</span><span class="token punctuation">,</span>
-  <span class="token property">"simple-progress-webpack-plugin"</span><span class="token operator">:</span> <span class="token string">"^1.1.2"</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="使用-Prettier"><a href="#使用-Prettier" class="headerlink" title="使用 Prettier"></a>使用 Prettier</h1><h1 id="关闭双击-shift-搜索"><a href="#关闭双击-shift-搜索" class="headerlink" title="关闭双击 shift 搜索"></a>关闭双击 shift 搜索</h1><p>按 <code>Crrl+Shift+A</code>，输入 <code>Registry</code>,找到 <code>ide.suppress.double.click.handler</code> 后把 ✔ 打上即可</p>
+<h1 id="关闭提示区分大小写"><a href="#关闭提示区分大小写" class="headerlink" title="关闭提示区分大小写"></a>关闭提示区分大小写</h1><p><code>Editor</code> -&gt; <code>General</code> -&gt; <code>Code Completion</code></p>
 ]]></content>
+      <tags>
+        <tag>IntelliJ IDEA</tag>
+      </tags>
   </entry>
   <entry>
     <title>设置 Github 区分文件名/目录名大小写</title>
@@ -453,6 +394,15 @@ module<span class="token punctuation">.</span>exports <span class="token operato
       <tags>
         <tag>GitHub</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>指定 create-react-app 启动时打开的浏览器</title>
+    <url>/2021/04/02/Specify-the-browser-to-open-when-the-Create-React-App-is-started/</url>
+    <content><![CDATA[<p>默认打开自默认浏览器</p>
+<span id="more"></span>
+
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"start"</span><span class="token operator">:</span> <span class="token string">"set BROWSER=firefox&amp;&amp; react-scripts start"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
   </entry>
   <entry>
     <title>使用 RestTemplate 发送 JSON 或者 x-www-form-urlencoded</title>
@@ -512,6 +462,62 @@ params<span class="token punctuation">.</span>add<span class="token punctuation"
 
 <span class="token comment">// 获取响应主体</span>
 response<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span>；<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+]]></content>
+  </entry>
+  <entry>
+    <title>使用 craco</title>
+    <url>/2021/04/03/Use-craco/</url>
+    <content><![CDATA[<p><code>Craco</code> 的配置示例</p>
+<span id="more"></span>
+
+<blockquote><p>Create React App Configuration Override is an easy and comprehensible configuration layer for create-react-app.</p>
+<p>Get all the benefits of <code>create-react-app</code> and customization without using <code>eject</code> by adding a single <code>craco.config.js</code> file at the root of your application and customize your eslint, babel, postcss configurations and many more.</p>
+<p>All you have to do is create your app using <a href="https://create-react-app.dev/">create-react-app</a> and customize the configuration with a craco.config.js file.</p>
+<footer><strong>gsoft-inc</strong><cite><a href="https://github.com/gsoft-inc/craco#craco">CRACO</a></cite></footer></blockquote>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">yarn add -D @craco&#x2F;craco<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>创建配置文件：</p>
+<pre class="line-numbers language-none"><code class="language-none">my-app
+├── node_modules
+├── craco.config.js
+└── package.json<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>更新脚本命令</p>
+<pre class="line-numbers language-diff" data-language="diff"><code class="language-diff">/* package.json */
+
+"scripts": &#123;
+<span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">   "start": "react-scripts start",
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">   "start": "craco start",
+</span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">   "build": "react-scripts build",
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">   "build": "craco build"
+</span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">   "test": "react-scripts test",
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">   "test": "craco test"
+</span></span>&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h1><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> CracoLessPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"craco-less"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> AntdDayjsWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"antd-dayjs-webpack-plugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> SimpleProgressWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"simple-progress-webpack-plugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">&#123;</span>
+      plugin<span class="token operator">:</span> CracoLessPlugin<span class="token punctuation">,</span>
+      options<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        lessLoaderOptions<span class="token operator">:</span> <span class="token punctuation">&#123;</span> lessOptions<span class="token operator">:</span> <span class="token punctuation">&#123;</span> javascriptEnabled<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  webpack<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token keyword">new</span> <span class="token class-name">AntdDayjsWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">SimpleProgressWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">"antd-dayjs-webpack-plugin"</span><span class="token operator">:</span> <span class="token string">"^1.0.6"</span><span class="token punctuation">,</span>
+  <span class="token property">"craco-less"</span><span class="token operator">:</span> <span class="token string">"^1.17.1"</span><span class="token punctuation">,</span>
+  <span class="token property">"simple-progress-webpack-plugin"</span><span class="token operator">:</span> <span class="token string">"^1.1.2"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
   </entry>
   <entry>
