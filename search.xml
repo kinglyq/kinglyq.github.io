@@ -207,6 +207,71 @@
 ]]></content>
   </entry>
   <entry>
+    <title>MyBatis 支持的 JDBC 类型</title>
+    <url>/2021/03/16/MyBatis-jdbcType/</url>
+    <content><![CDATA[<p>只需要在可能执行插入、更新和删除的且允许空值的列上指定 <code>JDBC</code> 类型，这是 <code>JDBC</code> 的要求而非 <code>MyBatis</code> 的要求。如果你直接面向 <code>JDBC</code> 编程，你需要对可以为空值的列指定这个类型。</p>
+<span id="more"></span>
+
+<p><strong><code>JDBC</code> 要求，如果一个列允许使用 <code>null</code> 值，并且会使用值为 <code>null</code> 的参数，就必须要指定 JDBC 类型（<code>jdbcType</code>）。</strong></p>
+<p>但大多时候，你只须简单指定属性名，顶多要为可能为空的列指定 <code>jdbcType</code>。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>BIT</code></td>
+<td><code>FLOAT</code></td>
+<td><code>CHAR</code></td>
+<td><code>TIMESTAMP</code></td>
+<td><code>OTHER</code></td>
+<td><code>UNDEFINED</code></td>
+</tr>
+<tr>
+<td><code>TINYINT</code></td>
+<td><code>REAL</code></td>
+<td><code>VARCHAR</code></td>
+<td><code>BINARY</code></td>
+<td><code>BLOB</code></td>
+<td><code>NVARCHAR</code></td>
+</tr>
+<tr>
+<td><code>SMALLINT</code></td>
+<td><code>DOUBLE</code></td>
+<td><code>LONGVARCHAR</code></td>
+<td><code>VARBINARY</code></td>
+<td><code>CLOB</code></td>
+<td><code>NCHAR</code></td>
+</tr>
+<tr>
+<td><code>INTEGER</code></td>
+<td><code>NUMERIC</code></td>
+<td><code>DATE</code></td>
+<td><code>LONGVARBINARY</code></td>
+<td><code>BOOLEAN</code></td>
+<td><code>NCLOB</code></td>
+</tr>
+<tr>
+<td><code>BIGINT</code></td>
+<td><code>DECIMAL</code></td>
+<td><code>TIME</code></td>
+<td><code>NULL</code></td>
+<td><code>CURSOR</code></td>
+<td><code>ARRAY</code></td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaFX Runtime images (Java 11+)</title>
     <url>/2021/03/09/JavaFX-runtime-images/</url>
     <content><![CDATA[<p>JavaFX 项目的 <code>Runtime images</code> 是一个自定义 JRE，它仅包含应用程序所需的平台模块。</p>
@@ -271,71 +336,6 @@
       <categories>
         <category>JavaFX</category>
       </categories>
-  </entry>
-  <entry>
-    <title>MyBatis 支持的 JDBC 类型</title>
-    <url>/2021/03/16/MyBatis-jdbcType/</url>
-    <content><![CDATA[<p>只需要在可能执行插入、更新和删除的且允许空值的列上指定 <code>JDBC</code> 类型，这是 <code>JDBC</code> 的要求而非 <code>MyBatis</code> 的要求。如果你直接面向 <code>JDBC</code> 编程，你需要对可以为空值的列指定这个类型。</p>
-<span id="more"></span>
-
-<p><strong><code>JDBC</code> 要求，如果一个列允许使用 <code>null</code> 值，并且会使用值为 <code>null</code> 的参数，就必须要指定 JDBC 类型（<code>jdbcType</code>）。</strong></p>
-<p>但大多时候，你只须简单指定属性名，顶多要为可能为空的列指定 <code>jdbcType</code>。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>BIT</code></td>
-<td><code>FLOAT</code></td>
-<td><code>CHAR</code></td>
-<td><code>TIMESTAMP</code></td>
-<td><code>OTHER</code></td>
-<td><code>UNDEFINED</code></td>
-</tr>
-<tr>
-<td><code>TINYINT</code></td>
-<td><code>REAL</code></td>
-<td><code>VARCHAR</code></td>
-<td><code>BINARY</code></td>
-<td><code>BLOB</code></td>
-<td><code>NVARCHAR</code></td>
-</tr>
-<tr>
-<td><code>SMALLINT</code></td>
-<td><code>DOUBLE</code></td>
-<td><code>LONGVARCHAR</code></td>
-<td><code>VARBINARY</code></td>
-<td><code>CLOB</code></td>
-<td><code>NCHAR</code></td>
-</tr>
-<tr>
-<td><code>INTEGER</code></td>
-<td><code>NUMERIC</code></td>
-<td><code>DATE</code></td>
-<td><code>LONGVARBINARY</code></td>
-<td><code>BOOLEAN</code></td>
-<td><code>NCLOB</code></td>
-</tr>
-<tr>
-<td><code>BIGINT</code></td>
-<td><code>DECIMAL</code></td>
-<td><code>TIME</code></td>
-<td><code>NULL</code></td>
-<td><code>CURSOR</code></td>
-<td><code>ARRAY</code></td>
-</tr>
-</tbody></table>
-]]></content>
-      <tags>
-        <tag>MyBatis</tag>
-      </tags>
   </entry>
   <entry>
     <title>MyBatis 的参数传递</title>
@@ -410,6 +410,66 @@
       </tags>
   </entry>
   <entry>
+    <title>使用 RestTemplate 发送 JSON 或者 x-www-form-urlencoded</title>
+    <url>/2021/04/11/Use-RestTemplate-to-send-JSON-or-x-www-form-urlencoded/</url>
+    <content><![CDATA[<p>二者的区别：</p>
+<ol>
+<li><p><a href="https://baike.baidu.com/item/JSON">JSON</a></p>
+<p> <code>Content-Type</code> 被设置为 <code>application/json</code>，数据以 <code>JSON</code> 格式放在<strong>请求体</strong>中。</p>
+</li>
+</ol>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>application/x-www-form-urlencoded</p>
+<p> 浏览器原生表单默认的编码方式，数据被编码成以 <code>&amp;</code> 分隔的键-值对, 同时以 <code>=</code> 分隔键和值。 非字母或数字的字符会被 <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/percent-encoding">percent-encoding</a>：这也就是为什么这种类型不支持二进制数据（应使用 <code>multipart/form-data</code> 代替）。</p>
+</li>
+</ol>
+<p>因为数据位置不同，所以后台获取的方式也不同。</p>
+<hr>
+<p>首先构造一个 <code>RestTemplate</code> 实例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">RestTemplate</span> restTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RestTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token string">"xxx"</span><span class="token punctuation">;</span>
+
+<span class="token class-name">HttpHeaders</span> headers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+headers<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> params <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"xxx"</span><span class="token punctuation">,</span> <span class="token string">"xxx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span>put<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token class-name">HttpEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Map</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span><span class="token punctuation">></span></span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> headers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 泛型为接口返回数据的类型</span>
+<span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> response <span class="token operator">=</span> restTemplate<span class="token punctuation">.</span><span class="token function">postForEntity</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> request<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 获取响应主体</span>
+response<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span>；<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="x-www-form-urlencoded"><a href="#x-www-form-urlencoded" class="headerlink" title="x-www-form-urlencoded"></a>x-www-form-urlencoded</h1><p>使用 <a href="https://www.javadoc.io/doc/org.springframework/spring-core/latest/org/springframework/util/LinkedMultiValueMap.html"><code>LinkedMultiValueMap</code></a> 构造数据。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token string">"xxx"</span><span class="token punctuation">;</span>
+
+<span class="token class-name">HttpHeaders</span> headers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+headers<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_FORM_URLENCODED<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">LinkedMultiValueMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> params <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedMultiValueMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"Martin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"gender"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span>add<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token class-name">HttpEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">LinkedMultiValueMap</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span><span class="token punctuation">></span></span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>params<span class="token punctuation">,</span>
+        headers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 泛型为接口返回数据的类型</span>
+<span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> response <span class="token operator">=</span> restTemplate<span class="token punctuation">.</span><span class="token function">postForEntity</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> request<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 获取响应主体</span>
+response<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span>；<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+]]></content>
+  </entry>
+  <entry>
     <title>使用 craco</title>
     <url>/2021/04/03/Use-craco/</url>
     <content><![CDATA[<p><code>Craco</code> 的配置示例</p>
@@ -475,64 +535,21 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 ]]></content>
   </entry>
   <entry>
-    <title>使用 RestTemplate 发送 JSON 或者 x-www-form-urlencoded</title>
-    <url>/2021/04/11/Use-RestTemplate-to-send-JSON-or-x-www-form-urlencoded/</url>
-    <content><![CDATA[<p>二者的区别：</p>
-<ol>
-<li><p><a href="https://baike.baidu.com/item/JSON">JSON</a></p>
-<p> <code>Content-Type</code> 被设置为 <code>application/json</code>，数据以 <code>JSON</code> 格式放在<strong>请求体</strong>中。</p>
-</li>
-</ol>
+    <title>VSCode 在代码片段中没有提示</title>
+    <url>/2021/05/31/VSCode-Quick-Suggestions/</url>
+    <content><![CDATA[<p>默认情况下，在代码片段中（处于光标聚焦状态）是没有提示的。比如:</p>
 <span id="more"></span>
 
-<ol start="2">
-<li><p>application/x-www-form-urlencoded</p>
-<p> 浏览器原生表单默认的编码方式，数据被编码成以 <code>&amp;</code> 分隔的键-值对, 同时以 <code>=</code> 分隔键和值。 非字母或数字的字符会被 <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/percent-encoding">percent-encoding</a>：这也就是为什么这种类型不支持二进制数据（应使用 <code>multipart/form-data</code> 代替）。</p>
-</li>
-</ol>
-<p>因为数据位置不同，所以后台获取的方式也不同。</p>
-<hr>
-<p>首先构造一个 <code>RestTemplate</code> 实例：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">RestTemplate</span> restTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RestTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><video width='100%' src="no.mp4" controls></video></p>
+<p>要想在这种情况下有代码提示的话，就得将 <code>Snippets Prevent Quick Suggestions</code> 关闭，如下：</p>
+<img src="/2021/05/31/VSCode-Quick-Suggestions/suggestions.jpg" class="" title="Prevent-Quick-Suggestions">
 
-<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token string">"xxx"</span><span class="token punctuation">;</span>
-
-<span class="token class-name">HttpHeaders</span> headers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-headers<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> params <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"xxx"</span><span class="token punctuation">,</span> <span class="token string">"xxx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-params<span class="token punctuation">.</span>put<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-
-<span class="token class-name">HttpEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Map</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span><span class="token punctuation">></span></span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> headers<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 泛型为接口返回数据的类型</span>
-<span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> response <span class="token operator">=</span> restTemplate<span class="token punctuation">.</span><span class="token function">postForEntity</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> request<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 获取响应主体</span>
-response<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span>；<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="x-www-form-urlencoded"><a href="#x-www-form-urlencoded" class="headerlink" title="x-www-form-urlencoded"></a>x-www-form-urlencoded</h1><p>使用 <a href="https://www.javadoc.io/doc/org.springframework/spring-core/latest/org/springframework/util/LinkedMultiValueMap.html"><code>LinkedMultiValueMap</code></a> 构造数据。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token string">"xxx"</span><span class="token punctuation">;</span>
-
-<span class="token class-name">HttpHeaders</span> headers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-headers<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_FORM_URLENCODED<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token class-name">LinkedMultiValueMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> params <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedMultiValueMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-params<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"Martin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-params<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-params<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"gender"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-params<span class="token punctuation">.</span>add<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-
-<span class="token class-name">HttpEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">LinkedMultiValueMap</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span><span class="token punctuation">></span></span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>params<span class="token punctuation">,</span>
-        headers<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 泛型为接口返回数据的类型</span>
-<span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> response <span class="token operator">=</span> restTemplate<span class="token punctuation">.</span><span class="token function">postForEntity</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> request<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 获取响应主体</span>
-response<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span>；<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样的话，在使用的代码片段时，也会有提示。</p>
+<p><video width='100%' src="yes.mp4" controls></video></p>
 ]]></content>
+      <tags>
+        <tag>Visual Studio Code</tag>
+      </tags>
   </entry>
   <entry>
     <title>使用 Hexo 写作</title>
