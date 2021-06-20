@@ -78,24 +78,24 @@
       </tags>
   </entry>
   <entry>
-    <title>获取本机win10的产品密钥</title>
-    <url>/2021/03/21/Get-the-product-key-of-local-win10/</url>
-    <content><![CDATA[<p>如何查看本机 <code>win10</code> 的产品密钥呢？👇</p>
+    <title>Java JSON library - Jackson 的使用</title>
+    <url>/2021/03/16/Jackson-s-application-memo/</url>
+    <content><![CDATA[<p>从实际使用的角度列出对 <code>Jackson</code> 的一些操作。</p>
 <span id="more"></span>
 
-<ol>
-<li><p>按 <code>win + q</code> 或 <code>win + r</code>，搜索 <code>regedit</code> 进入注册表。</p>
-</li>
-<li><p>地址栏输入并进入该条目</p>
-<pre class="line-numbers language-none"><code class="language-none">计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li><p>进入 <code>SoftwareProtectionPlatform</code> 的详情页面后，打开 <code>BackupProductKeyDefault</code>，里面的数值数据就是激活密钥。</p>
-</li>
-</ol>
+<p>What is Jackson?</p>
+<blockquote><p>Jackson has been known as “the Java JSON library” or “the best JSON parser for Java”. Or simply as “JSON for Java”.</p>
+<footer><strong>@FasterXML</strong><cite><a href="https://github.com/FasterXML/jackson#what-is-jackson">GitHub - FasterXML/jackson</a></cite></footer></blockquote>
+
+<h1 id="只在序列化或反序列化时忽略"><a href="#只在序列化或反序列化时忽略" class="headerlink" title="只在序列化或反序列化时忽略"></a>只在序列化或反序列化时忽略</h1><p>使用注解 <code>@JsonProperty</code> 的 <code>access</code> 属性。</p>
+<h1 id="定义反序列化时的别名"><a href="#定义反序列化时的别名" class="headerlink" title="定义反序列化时的别名"></a>定义反序列化时的别名</h1><p>使用注解 <code>@JsonAlias</code>。</p>
+<p>注：可定义属性的一个或<strong>多个</strong>替代名称，在反序列化期间可以接受为<strong>正式名称的替代</strong>。 别名信息在 <code>POJO</code> 内省期间也会公开，但在始终使用主名的序列化过程中无效。</p>
+<p>代码示例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Info</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@JsonAlias</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string">"n"</span><span class="token punctuation">,</span> <span class="token string">"Name"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
-      <tags>
-        <tag>Windows 10</tag>
-      </tags>
   </entry>
   <entry>
     <title>Getting Started with JavaFX 11+</title>
@@ -187,24 +187,24 @@
       </categories>
   </entry>
   <entry>
-    <title>Java JSON library - Jackson 的使用</title>
-    <url>/2021/03/16/Jackson-s-application-memo/</url>
-    <content><![CDATA[<p>从实际使用的角度列出对 <code>Jackson</code> 的一些操作。</p>
+    <title>获取本机win10的产品密钥</title>
+    <url>/2021/03/21/Get-the-product-key-of-local-win10/</url>
+    <content><![CDATA[<p>如何查看本机 <code>win10</code> 的产品密钥呢？👇</p>
 <span id="more"></span>
 
-<p>What is Jackson?</p>
-<blockquote><p>Jackson has been known as “the Java JSON library” or “the best JSON parser for Java”. Or simply as “JSON for Java”.</p>
-<footer><strong>@FasterXML</strong><cite><a href="https://github.com/FasterXML/jackson#what-is-jackson">GitHub - FasterXML/jackson</a></cite></footer></blockquote>
-
-<h1 id="只在序列化或反序列化时忽略"><a href="#只在序列化或反序列化时忽略" class="headerlink" title="只在序列化或反序列化时忽略"></a>只在序列化或反序列化时忽略</h1><p>使用注解 <code>@JsonProperty</code> 的 <code>access</code> 属性。</p>
-<h1 id="定义反序列化时的别名"><a href="#定义反序列化时的别名" class="headerlink" title="定义反序列化时的别名"></a>定义反序列化时的别名</h1><p>使用注解 <code>@JsonAlias</code>。</p>
-<p>注：可定义属性的一个或<strong>多个</strong>替代名称，在反序列化期间可以接受为<strong>正式名称的替代</strong>。 别名信息在 <code>POJO</code> 内省期间也会公开，但在始终使用主名的序列化过程中无效。</p>
-<p>代码示例：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Info</span> <span class="token punctuation">&#123;</span>
-    <span class="token annotation punctuation">@JsonAlias</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string">"n"</span><span class="token punctuation">,</span> <span class="token string">"Name"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ol>
+<li><p>按 <code>win + q</code> 或 <code>win + r</code>，搜索 <code>regedit</code> 进入注册表。</p>
+</li>
+<li><p>地址栏输入并进入该条目</p>
+<pre class="line-numbers language-none"><code class="language-none">计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>进入 <code>SoftwareProtectionPlatform</code> 的详情页面后，打开 <code>BackupProductKeyDefault</code>，里面的数值数据就是激活密钥。</p>
+</li>
+</ol>
 ]]></content>
+      <tags>
+        <tag>Windows 10</tag>
+      </tags>
   </entry>
   <entry>
     <title>MyBatis 支持的 JDBC 类型</title>
@@ -266,6 +266,15 @@
 <td><code>ARRAY</code></td>
 </tr>
 </tbody></table>
+]]></content>
+      <tags>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MyBatis 的参数传递</title>
+    <url>/2021/03/22/MyBatis-parameter-passing/</url>
+    <content><![CDATA[<p><a href="https://github.com/mybatis/mybatis-3/issues/549">Obtain formal parameter names using Java reflection · Issue #549 · mybatis/mybatis-3</a></p>
 ]]></content>
       <tags>
         <tag>MyBatis</tag>
@@ -338,15 +347,6 @@
       </categories>
   </entry>
   <entry>
-    <title>MyBatis 的参数传递</title>
-    <url>/2021/03/22/MyBatis-parameter-passing/</url>
-    <content><![CDATA[<p><a href="https://github.com/mybatis/mybatis-3/issues/549">Obtain formal parameter names using Java reflection · Issue #549 · mybatis/mybatis-3</a></p>
-]]></content>
-      <tags>
-        <tag>MyBatis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo 文章重命名后的路径访问问题</title>
     <url>/2021/03/25/Path-access-problem-after-Hexo-post-is-renamed/</url>
     <content><![CDATA[<p>修改了文章文件名的大小写后，发现其部署到 <code>GitHub</code> 后并没有变化。。。</p>
@@ -410,6 +410,15 @@
       </tags>
   </entry>
   <entry>
+    <title>指定 create-react-app 启动时打开的浏览器</title>
+    <url>/2021/04/02/Specify-the-browser-to-open-when-the-Create-React-App-is-started/</url>
+    <content><![CDATA[<p>默认打开自默认浏览器</p>
+<span id="more"></span>
+
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"start"</span><span class="token operator">:</span> <span class="token string">"set BROWSER=firefox&amp;&amp; react-scripts start"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
+  </entry>
+  <entry>
     <title>使用 RestTemplate 发送 JSON 或者 x-www-form-urlencoded</title>
     <url>/2021/04/11/Use-RestTemplate-to-send-JSON-or-x-www-form-urlencoded/</url>
     <content><![CDATA[<p>二者的区别：</p>
@@ -470,6 +479,84 @@ response<span class="token punctuation">.</span><span class="token function">get
 ]]></content>
   </entry>
   <entry>
+    <title>使用 Vue 动态控制 Element-UI 的 DatePicker 选择范围</title>
+    <url>/2021/06/05/Use-Vue-to-dynamically-control-the-DatePicker-of-Element-UI/</url>
+    <content><![CDATA[<p>绝大多数情况下我们需要对可选择的日期时间加以范围的控制，而 <a href="https://element.eleme.cn/#/zh-CN"><code>Element-UI</code></a> 也提供了 <code>Picker Options</code> 属性来进行配置。</p>
+<span id="more"></span>
+
+<h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>Picker Options</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>disabledDate</td>
+<td>设置禁用状态，参数为当前日期，要求返回 Boolean</td>
+<td>Function</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<h1 id="初探-disabledDate"><a href="#初探-disabledDate" class="headerlink" title="初探 disabledDate"></a>初探 <code>disabledDate</code></h1><p>首先，先构造两个普通的 <code>DatePicker</code> ：</p>
+<div style="width:70%;">
+<img src="/2021/06/05/Use-Vue-to-dynamically-control-the-DatePicker-of-Element-UI/code-1.png" class="" title="构造两个普通DatePicker的代码">
+</div>
+
+<p>属性 <code>picker-options</code> 是一个对象，而 <code>disabledDate</code> 又是 <code>picker-options</code> 的一个属性，其值是一个 <code>Function</code>，接收一个参数 —— 当前选择的日期。</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-date-picker</span>
+  <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>date1<span class="token punctuation">"</span></span>
+  <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>date<span class="token punctuation">"</span></span>
+  <span class="token attr-name">:picker-options</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pickerOptions1<span class="token punctuation">"</span></span>
+  <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>选择日期 - 1<span class="token punctuation">"</span></span>
+<span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-date-picker</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    pickerOptions1<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token function-variable function">disabledDate</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">now</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> now <span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如上面的代码，参数 <code>now</code> 代表要选择的日期，<code>return now &gt; new Date();</code> 就表示不能选择大于今天的日期，因为选择大于今天就返回 <code>true</code>，而<code>true</code> 就表示被禁用。</p>
+<h1 id="动态配置可选范围"><a href="#动态配置可选范围" class="headerlink" title="动态配置可选范围"></a>动态配置可选范围</h1><p>使用 <a href="https://v3.cn.vuejs.org/guide/computed.html"><strong>计算属性</strong></a></p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-date-picker</span>
+  <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>date2<span class="token punctuation">"</span></span>
+  <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>date<span class="token punctuation">"</span></span>
+  <span class="token attr-name">:picker-options</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pickerOptions2<span class="token punctuation">"</span></span>
+  <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>选择日期 - 2<span class="token punctuation">"</span></span>
+<span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-date-picker</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
+  computed<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token function-variable function">pickerOptions2</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 使用箭头函数是因为其不绑定 this ，否则使用 date1 那 this 就在当前 Function 的作用域</span>
+        <span class="token function-variable function">disabledDate</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">now</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+          <span class="token keyword">return</span> now <span class="token operator">></span> <span class="token keyword">this</span><span class="token punctuation">.</span>date1<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>Vue</tag>
+        <tag>Element-UI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用 craco</title>
     <url>/2021/04/03/Use-craco/</url>
     <content><![CDATA[<p><code>Craco</code> 的配置示例</p>
@@ -526,26 +613,24 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 ]]></content>
   </entry>
   <entry>
-    <title>指定 create-react-app 启动时打开的浏览器</title>
-    <url>/2021/04/02/Specify-the-browser-to-open-when-the-Create-React-App-is-started/</url>
-    <content><![CDATA[<p>默认打开自默认浏览器</p>
-<span id="more"></span>
-
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"start"</span><span class="token operator">:</span> <span class="token string">"set BROWSER=firefox&amp;&amp; react-scripts start"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-]]></content>
-  </entry>
-  <entry>
     <title>VSCode 在代码片段中没有提示</title>
     <url>/2021/05/31/VSCode-Quick-Suggestions/</url>
     <content><![CDATA[<p>默认情况下，在代码片段中（处于光标聚焦状态）是没有提示的。比如:</p>
 <span id="more"></span>
 
-<p><video width='100%' src="no.mp4" controls></video></p>
+<div style="width:90%;">
+<video width='100%' src="no.mp4" controls></video>
+</div>
+
 <p>要想在这种情况下有代码提示的话，就得将 <code>Snippets Prevent Quick Suggestions</code> 关闭，如下：</p>
+<div style="width:90%;">
 <img src="/2021/05/31/VSCode-Quick-Suggestions/suggestions.jpg" class="" title="Prevent-Quick-Suggestions">
+</div>
 
 <p>这样的话，在使用的代码片段时，也会有提示。</p>
-<p><video width='100%' src="yes.mp4" controls></video></p>
+<div style="width:90%;">
+<video width='100%' src="yes.mp4" controls></video>
+</div>
 ]]></content>
       <tags>
         <tag>Visual Studio Code</tag>
